@@ -20,10 +20,11 @@
 </template>
 
 <script>
-import store from "@/store/index";
 export default {
   name: "BreadCrumb",
-  created() {},
+  created() {
+    this.getBreadcrumb();
+  },
   data() {
     return {
       levelList: null,
@@ -38,7 +39,6 @@ export default {
       this.getBreadcrumb();
     },
   },
-  components: {},
   methods: {
     getBreadcrumb() {
       // 只显示含meta.tltle的路由
@@ -47,16 +47,15 @@ export default {
       );
       // 面包屑拼接完整数组，而tags数组只取数组的最后一项即所选择的一项
       const first = matched[0];
-      const pathTarget = matched[matched.length - 1];
-      // console.log(pathTarget);
-      store.dispatch("asyncAddTag", pathTarget);
       // 如果路由有name且不是首页则给路由信息数组拼接上首页的路由信息
       if (!this.isDashboard(first)) {
-        matched = [{ path: "/home", meta: { title: "我的桌面" } }].concat(
-          matched
-        );
+        matched = [
+          { path: "/inside/home", meta: { title: "我的桌面" } },
+        ].concat(matched);
       }
       // 这里将路由信息传递给store
+      /* const pathTarget = matched[matched.length - 1];
+      store.dispatch("asyncAddTag", pathTarget); */
       // 给最终需要的数组过滤掉没有meta.title和设定了不进入面包屑队列的路由
       this.levelList = matched.filter(
         (item) => item.meta && item.meta.title && item.meta.breadcrumb !== false
@@ -101,17 +100,6 @@ export default {
     font-size: 14px;
     line-height: 36px;
     margin-left: 8px;
-    /* .el-breadcrumb__inner {
-      span,
-      a {
-        height: 26px;
-        line-height: 26px;
-        display: inline-block;
-        border: 1px solid #d8dce5;
-        padding: 4px 8px;
-        background-color: #fff;
-      }
-    } */
     .no-redirect {
       color: #97a8be;
       cursor: text;

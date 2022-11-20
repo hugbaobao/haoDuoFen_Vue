@@ -1,5 +1,7 @@
 <template>
-  <div id="Code">代码教程</div>
+  <div id="Code">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>

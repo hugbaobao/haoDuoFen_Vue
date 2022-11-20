@@ -4,10 +4,7 @@
       <template>
         <el-form-item label="">
           <el-select
-<<<<<<< HEAD
-=======
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="detail.app"
             placeholder="选择小程序"
             :popper-append-to-body="false"
@@ -36,10 +33,7 @@
         </el-form-item>
         <el-form-item label="">
           <el-select
-<<<<<<< HEAD
-=======
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="detail.landing"
             placeholder="选择落地页分组"
             :popper-append-to-body="false"
@@ -49,10 +43,7 @@
         </el-form-item>
         <el-form-item label="">
           <el-select
-<<<<<<< HEAD
-=======
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="detail.url"
             placeholder="选择url查看"
             :popper-append-to-body="false"
@@ -62,10 +53,7 @@
         </el-form-item>
         <el-form-item label="">
           <el-select
-<<<<<<< HEAD
-=======
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="detail.state"
             placeholder="数据上报状态"
             :popper-append-to-body="false"
@@ -80,10 +68,7 @@
         </el-form-item>
         <el-form-item label="">
           <el-select
-<<<<<<< HEAD
-=======
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="detail.fans"
             placeholder="是否到粉"
             :popper-append-to-body="false"
@@ -95,10 +80,7 @@
         </el-form-item>
         <el-form-item label="">
           <el-select
-<<<<<<< HEAD
-=======
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="detail.source"
             placeholder="选择来源"
             :popper-append-to-body="false"
@@ -116,10 +98,7 @@
         </el-form-item>
         <el-form-item label="">
           <el-select
-<<<<<<< HEAD
-=======
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="detail.state"
             placeholder="是否到粉"
             :popper-append-to-body="false"

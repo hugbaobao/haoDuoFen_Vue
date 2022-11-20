@@ -1,122 +1,30 @@
 <template>
   <div id="CvsLink">
-<<<<<<< HEAD
-    <VchatContainer>
-=======
     <VchatContainer
       :count="totalcount"
       @sendSize="changeSize"
       @sendCurrent="changeCurrent"
       @filtersearch="filtersearch"
     >
->>>>>>> 90bfc2a (更新找到的部分)
       <!-- 搜索区 -->
       <template>
         <el-form-item label="">
           <el-select
-<<<<<<< HEAD
-=======
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="form.group"
             placeholder="选择分组"
             :popper-append-to-body="false"
           >
-<<<<<<< HEAD
-            <el-option label="一组" value="shanghai"></el-option>
-=======
             <el-option
               v-for="(item, index) in grouplist"
               :key="index"
               :label="item.group"
               :value="item.group"
             ></el-option>
->>>>>>> 90bfc2a (更新找到的部分)
           </el-select>
         </el-form-item>
 
         <el-form-item>
-<<<<<<< HEAD
-          <el-input v-model="form.url" placeholder="输入url查询"></el-input>
-        </el-form-item>
-      </template>
-      <!-- 按钮区 -->
-      <template slot="vdialog">
-        <AddCvs></AddCvs>
-      </template>
-    </VchatContainer>
-    <!-- 表格区 -->
-    <div class="cvstable">
-      <div class="group-table">
-        <el-table
-          ref="multipleTable"
-          :data="tableData"
-          tooltip-effect="dark"
-          style="width: 100%"
-          stripe
-          :border="true"
-          :header-cell-style="{
-            background: '#fafafa',
-          }"
-          @selection-change="handleSelectionChange"
-          empty-text="请添加落地页链接！"
-        >
-          <el-table-column fixed label="落地页分组">
-            <template slot-scope="scope">{{ scope.row.date }}</template>
-          </el-table-column>
-          <el-table-column prop="name" label="落地页url" width="350">
-          </el-table-column>
-          <el-table-column
-            prop="address"
-            label="转化类型"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="address"
-            label="计数方式"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="address"
-            label="统计类型"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="address"
-            label="统计方式"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="address"
-            label="埋点代码"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="address"
-            label="模糊匹配信息"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-        </el-table>
-      </div>
-      <div class="page">
-        <el-pagination
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="currentPage"
-          :page-sizes="[10, 20, 30, 40]"
-          :page-size="10"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="2"
-        >
-        </el-pagination>
-      </div>
-=======
           <el-input v-model="form.words" placeholder="输入url查询"></el-input>
         </el-form-item>
       </template>
@@ -220,19 +128,11 @@
         @editedform="toeditform"
       ></unshowdialog>
       <my-setting></my-setting>
->>>>>>> 90bfc2a (更新找到的部分)
     </div>
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
-import VchatContainer from "@/views/vchat/VchatContainer.vue";
-import AddCvs from "@/components/button/AddCvs.vue";
-export default {
-  name: "CvsLink",
-  created() {},
-=======
 import store from "@/store/index";
 import Bus from "@/utils/event";
 import VchatContainer from "@/views/vchat/VchatContainer.vue";
@@ -251,30 +151,10 @@ export default {
     this.grouplist = store.state.grouplist;
     this.getcvslink();
   },
->>>>>>> 90bfc2a (更新找到的部分)
   data() {
     return {
       form: {
         group: "",
-<<<<<<< HEAD
-        url: "",
-      },
-      tableData: [],
-      currentPage: 1,
-    };
-  },
-  methods: {
-    // 表格的方法
-    handleSelectionChange(val) {
-      this.multipleSelection = val;
-    },
-    // 分页功能两个
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
-    },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
-=======
         words: "",
       },
       // 表格数据
@@ -391,17 +271,13 @@ export default {
       } else {
         return this.$message.error("修改失败！");
       }
->>>>>>> 90bfc2a (更新找到的部分)
     },
   },
   components: {
     VchatContainer,
     AddCvs,
-<<<<<<< HEAD
-=======
     unshowdialog,
     MySetting,
->>>>>>> 90bfc2a (更新找到的部分)
   },
 };
 </script>
@@ -410,32 +286,12 @@ export default {
 #CvsLink {
   background-color: #fff;
   padding-bottom: 20px;
-<<<<<<< HEAD
-}
-.cvstable {
-  background-color: #fafafa;
-  border: 1px solid #eee;
-  margin: 0 15px;
-  .button {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 10px 15px;
-  }
-  /* .group-table {
-    } */
-  .page {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-=======
 
   // 隐藏的dialog的父盒子
   .editform {
     display: inline-block;
     position: absolute;
     right: -999px;
->>>>>>> 90bfc2a (更新找到的部分)
   }
 }
 </style>

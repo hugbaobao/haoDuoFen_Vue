@@ -1,18 +1,8 @@
 <template>
   <div id="VchatContainer">
-<<<<<<< HEAD
-    <div class="vform">
-      <el-form
-        :inline="true"
-        :model="formInline"
-        size="mini"
-        class="demo-form-inline"
-      >
-=======
     <!-- 搜索区 -->
     <div class="vform">
-      <el-form :inline="true" size="mini" class="demo-form-inline">
->>>>>>> 90bfc2a (更新找到的部分)
+      <el-form :inline="true" size="small" class="demo-form-inline">
         <slot name="default"></slot>
 
         <el-form-item>
@@ -24,11 +14,6 @@
         </el-form-item>
       </el-form>
     </div>
-<<<<<<< HEAD
-    <div class="vdialog">
-      <slot name="vdialog"></slot>
-    </div>
-=======
 
     <!-- 按钮 -->
     <div class="vdialog">
@@ -53,27 +38,10 @@
         </div>
       </div>
     </div>
->>>>>>> 90bfc2a (更新找到的部分)
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
-export default {
-  name: "VchatContainer",
-  created() {},
-  data() {
-    return {
-      formInline: {
-        user: "",
-        region: "",
-      },
-    };
-  },
-  methods: {
-    onSubmit() {
-      console.log("submit!");
-=======
 // :count="totalcount"          子组件传来分页使用的总条数
 // @sendSize="changeSize"          父传子单页数
 // @sendCurrent="changeCurrent"    父传子页码
@@ -99,7 +67,6 @@ export default {
     },
     handleCurrentChange(val) {
       this.$emit("sendCurrent", val);
->>>>>>> 90bfc2a (更新找到的部分)
     },
   },
   components: {},
@@ -111,17 +78,19 @@ export default {
   background-color: #fff;
   border-top: 1px solid #f6f6f6;
 
-  .vform,
+  .vform {
+    padding: 10px 20px 0;
+    display: flex;
+    justify-content: flex-start;
+  }
   .vdialog {
-    padding: 10px 20px;
+    padding: 0 20px 10px;
     display: flex;
     justify-content: flex-start;
   }
   .vdialog > div {
     margin-right: 5px;
   }
-<<<<<<< HEAD
-=======
 
   .Cmtable {
     padding: 0 20px 10px;
@@ -138,18 +107,14 @@ export default {
       border-top: 0;
     }
   }
->>>>>>> 90bfc2a (更新找到的部分)
 }
 </style>
 <style>
 .el-form-item--mini.el-form-item {
   margin-bottom: 0 !important;
 }
-<<<<<<< HEAD
-=======
 /*下拉框最后一个显示不完全*/
 .el-select-dropdown__wrap.el-scrollbar__wrap {
   margin-bottom: 0 !important;
 }
->>>>>>> 90bfc2a (更新找到的部分)
 </style>

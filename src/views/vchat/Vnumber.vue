@@ -1,38 +1,20 @@
 <template>
   <div id="Vnumber">
-<<<<<<< HEAD
-    <VchatContainer>
-=======
     <VchatContainer
       :count="totalcount"
       @sendSize="changeSize"
       @sendCurrent="changeCurrent"
       @filtersearch="filtersearch"
     >
->>>>>>> 90bfc2a (更新找到的部分)
       <!-- 表单区 -->
       <template>
         <el-form-item label="">
           <el-select
-<<<<<<< HEAD
-=======
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="formInline.group1"
             placeholder="排序"
             :popper-append-to-body="false"
           >
-<<<<<<< HEAD
-            <el-option label="分组名称" value="shanghai"></el-option>
-            <el-option label="最近状态" value="shanghai"></el-option>
-            <el-option label="按今日复制数" value="shanghai"></el-option>
-            <el-option label="按今日上报数" value="shanghai"></el-option>
-            <el-option label="按今日到粉数" value="shanghai"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="">
-          <el-select
-=======
             <el-option label="分组名称" value="uid"></el-option>
             <el-option label="最近状态" value="neartime"></el-option>
             <el-option label="按今日复制数" value="copy"></el-option>
@@ -44,18 +26,10 @@
         <el-form-item label="">
           <el-select
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="formInline.group2"
             placeholder="所有分组"
             :popper-append-to-body="false"
           >
-<<<<<<< HEAD
-            <el-option label="所有分组" value="shanghai"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="">
-          <el-select
-=======
             <el-option
               v-for="(item, id) in wxgrouplist"
               :key="id"
@@ -68,23 +42,10 @@
         <el-form-item label="">
           <el-select
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="formInline.group3"
             placeholder="筛选"
             :popper-append-to-body="false"
           >
-<<<<<<< HEAD
-            <el-option label="只看上线状态" value="shanghai"></el-option>
-            <el-option label="只看下线状态" value="shanghai"></el-option>
-            <el-option label="只看未上传二维码" value="shanghai"></el-option>
-            <el-option label="只看已上传二维码" value="shanghai"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item>
-          <el-input
-            v-model="formInline.user"
-            placeholder="搜索分组名/微信号"
-=======
             <el-option label="只看上线状态" value="1"></el-option>
             <el-option label="只看下线状态" value="0"></el-option>
             <el-option label="只看未上传二维码" value="2"></el-option>
@@ -96,66 +57,44 @@
           <el-input
             v-model="formInline.words"
             placeholder="搜索微信号"
->>>>>>> 90bfc2a (更新找到的部分)
           ></el-input>
         </el-form-item>
       </template>
       <!-- 按钮区 -->
       <template slot="vdialog">
-        <Addvnumber></Addvnumber>
-        <Adderweima></Adderweima>
+        <Addvnumber dialogtitle="添加微信号" @sendform="addWinxin"></Addvnumber>
       </template>
-<<<<<<< HEAD
-    </VchatContainer>
-    <!-- 表格区 -->
-    <div class="grouptable">
-      <Vnumbertable></Vnumbertable>
-    </div>
-=======
 
       <!-- 表格区 -->
       <template slot="tables">
-        <Vnumbertable :tableData="tableData"></Vnumbertable>
+        <Vnumbertable
+          :tableData="tableData"
+          @torefresh="torefresh"
+        ></Vnumbertable>
       </template>
     </VchatContainer>
->>>>>>> 90bfc2a (更新找到的部分)
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
 import store from "@/store/index";
->>>>>>> 90bfc2a (更新找到的部分)
+import Bus from "@/utils/event";
 import VchatContainer from "@/views/vchat/VchatContainer.vue";
 import Addvnumber from "@/components/button/Addvnumber.vue";
-import Adderweima from "@/components/button/Adderweima.vue";
 import Vnumbertable from "@/views/vchat/Vnumbertable.vue";
-<<<<<<< HEAD
-export default {
-  name: "Vnumber",
-  created() {},
-=======
-import { cotrWxApi } from "@/api/wxmanage";
+import { cotrWxApi, appendWxApi } from "@/api/wxmanage";
 export default {
   name: "Vnumber",
   created() {
     this.wxgrouplist = store.state.wxgrouplist;
     this.controlWx();
   },
->>>>>>> 90bfc2a (更新找到的部分)
   data() {
     return {
       formInline: {
         group1: "",
         group2: "",
         group3: "",
-<<<<<<< HEAD
-        user: "",
-      },
-    };
-  },
-=======
         words: "",
       },
       // 渲染所用的分组
@@ -184,6 +123,11 @@ export default {
       this.controlWx();
     },
 
+    // 添加后刷新
+    torefresh() {
+      this.controlWx();
+    },
+
     // Api
     async controlWx() {
       const { data: res } = await cotrWxApi(
@@ -193,14 +137,25 @@ export default {
       );
       this.tableData = res.data;
       this.totalcount = res.count;
-      console.log(res.data);
+    },
+    // 新增
+    async addWinxin(form) {
+      const { data: res } = await appendWxApi(form);
+      if (res.code == 200) {
+        Bus.$emit("closedialog");
+        this.$message({
+          message: "提交成功",
+          type: "success",
+        });
+        this.torefresh();
+      } else {
+        return this.$message.error(res.message);
+      }
     },
   },
->>>>>>> 90bfc2a (更新找到的部分)
   components: {
     VchatContainer,
     Addvnumber,
-    Adderweima,
     Vnumbertable,
   },
 };

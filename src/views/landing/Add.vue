@@ -18,10 +18,7 @@
             type="primary"
             size="small"
             icon="el-icon-search"
-<<<<<<< HEAD
-=======
             @click="searchgroup"
->>>>>>> 90bfc2a (更新找到的部分)
           ></el-button>
         </div>
 
@@ -42,10 +39,7 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
 import Bus from "@/utils/event";
->>>>>>> 90bfc2a (更新找到的部分)
 import Dialog from "@/components/Dialog.vue";
 import BTAddgroup from "@/components/button/Addgroup.vue";
 import Addlanding from "@/components/button/Addlanding.vue";
@@ -68,15 +62,11 @@ export default {
     BTAddgroup,
     AddGroup,
   },
-<<<<<<< HEAD
-  methods: {},
-=======
   methods: {
     searchgroup() {
       Bus.$emit("getsearch", this.groupsearch);
     },
   },
->>>>>>> 90bfc2a (更新找到的部分)
 };
 </script>
 
@@ -99,9 +89,11 @@ export default {
   }
   .BTaddgroup {
     margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
   }
   .group-table {
-    height: 55vh;
+    height: 50vh;
     padding-bottom: 5px;
   }
 }

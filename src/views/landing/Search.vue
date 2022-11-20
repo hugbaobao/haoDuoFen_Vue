@@ -8,10 +8,7 @@
     >
       <el-form-item label="">
         <el-select
-<<<<<<< HEAD
-=======
           clearable
->>>>>>> 90bfc2a (更新找到的部分)
           v-model="formInline.group"
           placeholder="选择分组"
           :popper-append-to-body="false"
@@ -27,21 +24,13 @@
 
       <el-form-item label="">
         <el-select
-<<<<<<< HEAD
-=======
           clearable
->>>>>>> 90bfc2a (更新找到的部分)
           v-model="formInline.enable"
           placeholder="是否启用"
           :popper-append-to-body="false"
         >
-<<<<<<< HEAD
-          <el-option label="启用" value="true"></el-option>
-          <el-option label="未启用" value="false"></el-option>
-=======
           <el-option label="启用" :value="true"></el-option>
           <el-option label="未启用" :value="false"></el-option>
->>>>>>> 90bfc2a (更新找到的部分)
         </el-select>
       </el-form-item>
 
@@ -65,20 +54,12 @@
 
 <script>
 import Bus from "@/utils/event";
-<<<<<<< HEAD
-import { groupallApi } from "@/api/landing";
-export default {
-  name: "LandingSearch",
-  created() {
-    this.getgrouplist();
-=======
 import store from "@/store/index";
 export default {
   name: "LandingSearch",
   // 用于搜索下拉菜单渲染
   created() {
     this.selectlist = store.state.grouplist;
->>>>>>> 90bfc2a (更新找到的部分)
   },
   data() {
     return {
@@ -87,10 +68,6 @@ export default {
         enable: "",
         words: "",
       },
-<<<<<<< HEAD
-      // 用于搜索下拉菜单渲染
-=======
->>>>>>> 90bfc2a (更新找到的部分)
       selectlist: [],
     };
   },
@@ -98,14 +75,6 @@ export default {
     onSubmit() {
       Bus.$emit("landingfilter", this.formInline);
     },
-<<<<<<< HEAD
-    // Api
-    async getgrouplist() {
-      const { data: res } = await groupallApi();
-      this.selectlist = res.data;
-    },
-=======
->>>>>>> 90bfc2a (更新找到的部分)
   },
   components: {},
 };

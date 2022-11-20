@@ -23,10 +23,6 @@
               </el-form-item>
 
               <el-form-item label="选择分组">
-<<<<<<< HEAD
-                <el-select v-model="form.group" placeholder="不设置">
-                  <el-option label="分组一" value="shanghai"></el-option>
-=======
                 <el-select
                   clearable
                   v-model="form.group"
@@ -38,7 +34,6 @@
                     :label="item.group"
                     :value="item.group"
                   ></el-option>
->>>>>>> 90bfc2a (更新找到的部分)
                 </el-select>
               </el-form-item>
 
@@ -96,11 +91,6 @@ import Dialog from "@/components/Dialog.vue";
 import { validateUrl } from "@/utils/validate";
 import { insertApi } from "@/api/landing";
 import Bus from "@/utils/event";
-<<<<<<< HEAD
-export default {
-  name: "Addlanding",
-  props: ["dialogtitle"],
-=======
 import store from "@/store/index";
 export default {
   name: "Addlanding",
@@ -108,7 +98,6 @@ export default {
   created() {
     this.selectlist = store.state.grouplist;
   },
->>>>>>> 90bfc2a (更新找到的部分)
   data() {
     return {
       form: {
@@ -125,15 +114,9 @@ export default {
           { validator: validateUrl, trigger: "blur" },
         ],
       },
-<<<<<<< HEAD
-    };
-  },
-  watch: {},
-=======
       selectlist: [],
     };
   },
->>>>>>> 90bfc2a (更新找到的部分)
   components: {
     Dialog,
   },

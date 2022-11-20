@@ -1,43 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <div id="Addgroup">
-    <!-- 添加分组 -->
-    <div class="group-add">
-      <el-button
-        size="small"
-        icon="el-icon-circle-plus-outline"
-        @click="dialogFormVisible = true"
-        >添加分组</el-button
-      >
-    </div>
-
-    <!-- 表单 -->
-    <el-dialog
-      title="添加分组"
-      :visible.sync="dialogFormVisible"
-      append-to-body
-      width="30%"
-      style="margin-top: 15vh"
-    >
-      <el-form
-        :model="addform"
-        label-position="left"
-        ref="addform"
-        label-width="80px"
-      >
-        <el-form-item label="分组名称">
-          <el-input v-model="addform.group" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="备注">
-          <el-input v-model="addform.remarks" autocomplete="off"></el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="addsub">提 交</el-button>
-      </div>
-    </el-dialog>
-=======
   <div id="MyAddgroup">
     <my-dialog
       formtitle="添加分组"
@@ -78,52 +39,10 @@
         </div>
       </template>
     </my-dialog>
->>>>>>> 90bfc2a (更新找到的部分)
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
-import { addgroupApi } from "@/api/landing";
-import Bus from "@/utils/event";
-export default {
-  name: "Addgroup",
-  props: [],
-  data() {
-    return {
-      flag: false,
-      // 添加的表单
-      addform: {
-        group: "",
-        remarks: "",
-      },
-      dialogFormVisible: false,
-    };
-  },
-
-  watch: {},
-  components: {},
-  methods: {
-    addsub() {
-      this.addgroup();
-      Bus.$emit("refreshgroup");
-      this.dialogFormVisible = false;
-    },
-
-    // api
-    async addgroup() {
-      const { data: res } = await addgroupApi(this.addform);
-      if (res.code == 200) {
-        this.$notify({
-          title: "成功",
-          message: "添加分组成功",
-          type: "success",
-        });
-        this.$refs.form.resetFields();
-      }
-    },
-  },
-=======
 import Bus from "@/utils/event";
 import { appendwxgroupApi } from "@/api/wxmanage";
 export default {
@@ -184,17 +103,10 @@ export default {
       this.isopen = newval;
     },
   },
->>>>>>> 90bfc2a (更新找到的部分)
 };
 </script>
 
 <style lang="scss" scoped>
-<<<<<<< HEAD
-#Addgroup {
-  .group-add {
-    display: flex;
-    justify-content: flex-start;
-=======
 .content {
   height: 434px;
 
@@ -213,7 +125,6 @@ export default {
         margin-top: 5px;
       }
     }
->>>>>>> 90bfc2a (更新找到的部分)
   }
 }
 </style>

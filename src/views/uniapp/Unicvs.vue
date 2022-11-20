@@ -4,10 +4,7 @@
       <template>
         <el-form-item label="">
           <el-select
-<<<<<<< HEAD
-=======
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="cvsform.app"
             placeholder="选择小程序"
             :popper-append-to-body="false"

@@ -5,10 +5,7 @@
       <template>
         <el-form-item label="">
           <el-select
-<<<<<<< HEAD
-=======
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="form.group"
             placeholder="选择分组"
             :popper-append-to-body="false"
@@ -37,10 +34,7 @@
         </el-form-item>
         <el-form-item label="">
           <el-select
-<<<<<<< HEAD
-=======
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="form.order"
             placeholder="排序"
             :popper-append-to-body="false"

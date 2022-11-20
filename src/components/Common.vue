@@ -2,29 +2,51 @@
   <div id="Common">
     <el-row :gutter="20">
       <el-col :xs="24" :sm="12" :lg="6">
-        <el-button round>JS代码安装</el-button>
+        <router-link to="/inside/code/index"
+          ><el-button round>JS代码安装</el-button></router-link
+        >
+      </el-col>
+
+      <el-col :xs="24" :sm="12" :lg="6">
+        <router-link to="/inside/code/index"
+          ><el-button round>教程文档</el-button></router-link
+        >
+      </el-col>
+
+      <el-col :xs="24" :sm="12" :lg="6">
+        <router-link to="/inside/copy/visitor"
+          ><el-button round>复制实时访客</el-button></router-link
+        >
+      </el-col>
+
+      <el-col :xs="24" :sm="12" :lg="6">
+        <router-link to="/inside/visitor/:1"
+          ><el-button round>全部实时访客</el-button></router-link
+        >
+      </el-col>
+
+      <el-col :xs="24" :sm="12" :lg="6">
+        <router-link to="/inside/vchat/landing"
+          ><el-button round>落地页微信管理设置</el-button></router-link
+        >
       </el-col>
       <el-col :xs="24" :sm="12" :lg="6">
-        <el-button round>教程文档</el-button></el-col
-      >
+        <router-link to="/inside/copy/index"
+          ><el-button round>落地页统计管理设置</el-button>
+        </router-link>
+      </el-col>
+
       <el-col :xs="24" :sm="12" :lg="6">
-        <el-button round>复制实时访客</el-button></el-col
-      >
+        <router-link to="/inside/landing"
+          ><el-button round>落地页管理</el-button>
+        </router-link>
+      </el-col>
+
       <el-col :xs="24" :sm="12" :lg="6">
-        <el-button round>全部实时访客</el-button></el-col
-      >
-      <el-col :xs="24" :sm="12" :lg="6">
-        <el-button round>落地页微信管理设置</el-button></el-col
-      >
-      <el-col :xs="24" :sm="12" :lg="6">
-        <el-button round>落地页统计管理设置</el-button></el-col
-      >
-      <el-col :xs="24" :sm="12" :lg="6">
-        <el-button round>落地页管理</el-button></el-col
-      >
-      <el-col :xs="24" :sm="12" :lg="6">
-        <el-button round>升级续费</el-button></el-col
-      >
+        <router-link to="/inside/personal/:3"
+          ><el-button round>升级续费</el-button>
+        </router-link>
+      </el-col>
     </el-row>
   </div>
 </template>

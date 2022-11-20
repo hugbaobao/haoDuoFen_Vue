@@ -5,7 +5,11 @@
     </el-button>
 
     <el-dialog :title="formtitle" :visible.sync="dialogFormVisible" width="70%">
-      <slot name="currentForm"></slot>
+      <div class="scrollcontent">
+        <el-scrollbar style="height: 100%">
+          <slot name="currentForm"></slot>
+        </el-scrollbar>
+      </div>
     </el-dialog>
   </div>
 </template>
@@ -39,35 +43,31 @@ export default {
       }
     },
   },
-  components: {},
-  methods: {},
 };
 </script>
 
-<<<<<<< HEAD
-<style lang="scss" scoped></style>
-=======
->>>>>>> 90bfc2a (更新找到的部分)
 <style scoped>
 .el-dialog__header {
   border-bottom: 1px solid #f6f6f6;
-}
-.el-dialog__body {
-  height: 75vh;
-  position: relative;
 }
 /*下拉框最后一个显示不完全*/
 .el-select-dropdown__wrap.el-scrollbar__wrap {
   margin-bottom: 0 !important;
 }
 </style>
-<<<<<<< HEAD
-=======
 <style lang="scss">
 // 使dialog头部有个分割线
 .el-dialog__header {
   padding: 20px 20px 10px;
   border-bottom: 1px solid #dcdfe6;
 }
+.el-dialog__body {
+  height: 70vh;
+  position: relative;
+  overflow: hidden;
+
+  .scrollcontent {
+    height: 100%;
+  }
+}
 </style>
->>>>>>> 90bfc2a (更新找到的部分)

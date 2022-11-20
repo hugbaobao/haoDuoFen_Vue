@@ -31,14 +31,14 @@ export const updatelandingApi = function (form) {
   });
 };
 
-// get落地页
-<<<<<<< HEAD
-export const gettotalApi = function () {
-  return request.post("/landing/gtc");
+//改微信绑定信息
+export const changeweixinApi = function (form) {
+  return request.post("/landing/cgwx", {
+    data: form,
+  });
 };
 
-=======
->>>>>>> 90bfc2a (更新找到的部分)
+// get落地页
 export const getLandingApi = function (pages, limit, filterform) {
   return request.post("/landing/gtlanding", {
     currentpage: pages,
@@ -47,8 +47,6 @@ export const getLandingApi = function (pages, limit, filterform) {
   });
 };
 
-<<<<<<< HEAD
-=======
 export const landingallApi = function () {
   return request.post("/landing/gtl");
 };
@@ -61,7 +59,24 @@ export const tglandingApi = function (ids, ables) {
   });
 };
 
->>>>>>> 90bfc2a (更新找到的部分)
+// 获取带微信分组附表
+export const LandingWithGroupApi = function (pages, limit, filterform) {
+  return request.post("/landing/lwg", {
+    currentpage: pages,
+    singlepage: limit,
+    condition: filterform,
+  });
+};
+
+//解绑微信
+export const UnbindingApi = function (ids) {
+  return request.get("/landing/ubd", {
+    params: {
+      id: ids,
+    },
+  });
+};
+
 // 分组
 // 增
 export const addgroupApi = function (form) {
@@ -71,13 +86,6 @@ export const addgroupApi = function (form) {
 };
 
 // 查
-<<<<<<< HEAD
-export const grouptotalApi = function () {
-  return request.get("/group/gtc");
-};
-
-=======
->>>>>>> 90bfc2a (更新找到的部分)
 export const getgroupApi = function (pages, limit) {
   return request.get("/group/gtgroup", {
     params: {
@@ -91,8 +99,6 @@ export const groupallApi = function () {
   return request.get("/group/gta");
 };
 
-<<<<<<< HEAD
-=======
 export const groupsearchApi = function (val, pages, limit) {
   return request.get("/group/gts", {
     params: {
@@ -103,7 +109,6 @@ export const groupsearchApi = function (val, pages, limit) {
   });
 };
 
->>>>>>> 90bfc2a (更新找到的部分)
 // 改
 export const updategroupApi = function (form) {
   return request.post("/group/update", {

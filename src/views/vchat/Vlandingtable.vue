@@ -4,10 +4,11 @@
       <el-button type="warning" size="small">批量设置</el-button>
       <el-button type="warning" size="small">批量删除</el-button>
     </div>
+
     <div class="group-table">
       <el-table
         ref="multipleTable"
-        :data="tableData"
+        :data="tabledata"
         tooltip-effect="dark"
         style="width: 100%"
         stripe
@@ -20,102 +21,152 @@
       >
         <el-table-column type="selection" width="50" align="center">
         </el-table-column>
-        <el-table-column fixed label="落地页分组">
-          <template slot-scope="scope">{{ scope.row.date }}</template>
+
+        <el-table-column prop="group" fixed label="落地页分组" width="100">
         </el-table-column>
-        <el-table-column prop="name" label="落地页url"> </el-table-column>
+
+        <el-table-column prop="url" label="落地页url" width="250">
+        </el-table-column>
+
+        <el-table-column prop="remarks" label="落地页备注" width="100">
+        </el-table-column>
+
+        <el-table-column prop="wxgroup.name" label="设置微信号" width="100">
+        </el-table-column>
         <el-table-column
-          prop="address"
-          label="落地页备注"
+          prop="wxgroup.name"
+          label="二维码"
           show-overflow-tooltip
         >
         </el-table-column>
-        <el-table-column
-          prop="address"
-          label="设置微信号"
-          show-overflow-tooltip
-        >
+        <el-table-column label="同访客微信号固定" width="145">
+          <template slot-scope="scope">
+            {{ scope.row.same || "未设置" }}
+          </template>
         </el-table-column>
-        <el-table-column prop="address" label="二维码" show-overflow-tooltip>
+
+        <el-table-column label="分享微信号固定" width="140">
+          <template slot-scope="scope">
+            {{ scope.row.share || "未设置" }}
+          </template>
         </el-table-column>
-        <el-table-column
-          prop="address"
-          label="同访客微信号固定"
-          show-overflow-tooltip
-        >
+
+        <el-table-column label="移动端复制设置" width="140">
+          <template slot-scope="scope">
+            {{ scope.row.mclick || scope.row.mtouch || "未设置" }}
+          </template>
         </el-table-column>
-        <el-table-column
-          prop="address"
-          label="分享微信号固定"
-          show-overflow-tooltip
-        >
+
+        <el-table-column label="PC端复制设置" width="140">
+          <template slot-scope="scope">
+            {{ scope.row.pclick || scope.row.pselect || "未设置" }}
+          </template>
         </el-table-column>
-        <el-table-column
-          prop="address"
-          label="移动端复制设置"
-          show-overflow-tooltip
-        >
+
+        <el-table-column label="微信号来源" width="100">
+          <template slot-scope="scope">
+            {{ from(scope.row.from) }}
+          </template>
+        </el-table-column>
+        <el-table-column prop="show" label="微信号显示" width="100">
+        </el-table-column>
+
+        <el-table-column fixed="right" label="操作" width="150">
+          <template slot-scope="scope">
+            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
+              >编辑</el-button
+            >
+
+            <el-popconfirm
+              title="确定删除这条吗？"
+              @confirm="handleDelete(scope.$index, scope.row)"
+            >
+              <el-button
+                size="mini"
+                type="danger"
+                slot="reference"
+                style="margin-left: 10px"
+                >删除</el-button
+              >
+            </el-popconfirm>
+          </template>
         </el-table-column>
       </el-table>
     </div>
-    <div class="page">
-      <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage"
-        :page-sizes="[10, 20, 30, 40]"
-        :page-size="10"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="2"
-      >
-      </el-pagination>
+
+    <div class="unshow">
+      <my-landwithgroup
+        dialogtitle="落地页微信号修改"
+        ref="controldialog"
+        @refresh="fresh"
+      ></my-landwithgroup>
     </div>
   </div>
 </template>
 
 <script>
+import { UnbindingApi } from "@/api/landing";
+import MyLandwithgroup from "@/components/unshowbutton/Landwithgroup.vue";
 export default {
   name: "VGrouptable",
   created() {},
+  props: ["tabledata"],
   data() {
     return {
-      tableData: [
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
-        },
-      ],
-      switchflag: false,
-      switchflags: false,
-      //   分页相关
-      currentPage: 1,
+      multipleSelection: [],
     };
   },
   methods: {
+    //刷新界面
+    fresh() {
+      this.$emit("refresh");
+    },
+
     handleSelectionChange(val) {
       this.multipleSelection = val;
     },
+    // 编辑
     handleEdit(index, row) {
-      console.log(index, row);
+      this.$refs.controldialog.opendialog(row);
     },
+    // 删除
     handleDelete(index, row) {
-      console.log(index, row);
+      this.Unbinding(row.id);
     },
-    // 分页功能两个
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
+
+    // 表格渲染判断
+    from(val) {
+      let words = "";
+      switch (val) {
+        case 1:
+          words = "分组管理";
+          break;
+        case 2:
+          words = "手动指定";
+          break;
+        default:
+          words = "未设置";
+      }
+      return words;
     },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+
+    //Api
+    async Unbinding(id) {
+      const { data: res } = await UnbindingApi(id);
+      if (res.code == 200) {
+        this.fresh();
+        this.$message({
+          message: "已删除绑定",
+          type: "success",
+        });
+      } else {
+        return this.$message.error("出错了");
+      }
     },
   },
-  components: {},
+  components: {
+    MyLandwithgroup,
+  },
 };
 </script>
 
@@ -129,54 +180,15 @@ export default {
     align-items: center;
     padding: 10px 15px;
   }
-  /* .group-table {
-    } */
   .page {
     display: flex;
     justify-content: flex-start;
     align-items: center;
   }
-}
-</style>
-<style>
-/* 修改开关样式 */
-/* switch按钮样式 */
-.switchClass .el-switch__label {
-  position: absolute;
-  display: none;
-  color: #fff !important;
-}
-/*打开时文字位置设置*/
-.switchClass .el-switch__label--right {
-  z-index: 1;
-}
-/* 调整打开时文字的显示位子 */
-.switchClass .el-switch__label--right span {
-  margin-right: 13px;
-  font-size: 12px;
-}
-/*关闭时文字位置设置*/
-.switchClass .el-switch__label--left {
-  z-index: 1;
-}
-/* 调整关闭时文字的显示位子 */
-.switchClass .el-switch__label--left span {
-  margin-left: 17px;
-  font-size: 12px;
-}
-/*显示文字*/
-.switchClass .el-switch__label.is-active {
-  display: block;
-}
-/* 调整按钮的宽度 */
-.switchClass.el-switch .el-switch__core,
-.el-switch .el-switch__label {
-  width: 45px !important;
-  margin: 0;
-}
 
-/*下拉框最后一个显示不完全*/
-.el-select-dropdown__wrap.el-scrollbar__wrap {
-  margin-bottom: 0 !important;
+  .unshow {
+    position: absolute;
+    right: -999px;
+  }
 }
 </style>

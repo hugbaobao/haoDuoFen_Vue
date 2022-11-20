@@ -9,6 +9,11 @@ export const getmonitorApi = function (pages, limit, filterform) {
   });
 };
 
+// 统计链接首页渲染
+export const monitorhomeApi = function () {
+  return request.get("/monitor/mthome");
+};
+
 // 增
 export const appendcvslinkApi = function (form) {
   return request.post("/cvslink/append", {

@@ -43,20 +43,40 @@ export default {
   watch: {
     $route(route) {
       this.activeIndex = route.path;
+      this.addTags();
     },
   },
-  mounted() {},
+  mounted() {
+    this.addTags();
+  },
   methods: {
+    // 判断是否是选定的路由
     isActive(route) {
       return route.path === this.$route.path;
     },
+    // 关闭路由后决定下一个被选中的路由
     closetags(tag, index) {
       store.dispatch("removeTag", tag);
-      if (index > 0) {
-        this.$router.replace(this.pathList[index - 1].path);
-      } else if (index == 0) {
-        this.$router.replace(this.pathList[0].path);
+      if (tag.path == this.$route.path) {
+        if (index > 0) {
+          this.$router.replace(this.pathList[index - 1].path);
+        } else if (index == 0) {
+          this.$router.replace(this.pathList[0].path);
+        }
       }
+    },
+    // 添加路由到store
+    addTags() {
+      /* const { name } = this.$route;
+      console.log(name, this.$route); */
+      // 只显示含meta.tltle的路由
+      let matched = this.$route.matched.filter(
+        (item) => item.meta && item.meta.title
+      );
+      if (matched) {
+        store.dispatch("asyncAddTag", matched[0]);
+      }
+      return false;
     },
   },
 };
@@ -67,8 +87,7 @@ export default {
   width: 100%;
   height: 36px;
   background-color: #fff;
-
-  padding-left: 5px;
+  padding-left: 15px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   span {
     margin-right: 5px;

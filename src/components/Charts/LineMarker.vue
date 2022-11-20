@@ -9,7 +9,6 @@
 <script>
 import echarts from "echarts";
 import resize from "./mixins/resize";
-
 export default {
   mixins: [resize],
   props: {
@@ -30,13 +29,33 @@ export default {
       default: "200px",
     },
   },
+  created() {
+    this.getX();
+  },
   data() {
     return {
       chart: null,
+      Xline: [],
     };
   },
+  inject: {
+    pvs: {
+      from: "pv",
+      default: [0, 0, 0, 0, 0, 0, 0],
+    },
+    uvs: {
+      from: "uv",
+      default: [0, 0, 0, 0, 0, 0, 0],
+    },
+    counts: {
+      from: "count",
+      default: [0, 0, 0, 0, 0, 0, 0],
+    },
+  },
   mounted() {
-    this.initChart();
+    setTimeout(() => {
+      this.initChart();
+    }, 200);
   },
   beforeDestroy() {
     if (!this.chart) {
@@ -46,14 +65,26 @@ export default {
     this.chart = null;
   },
   methods: {
+    getX() {
+      let days = [];
+      var date = new Date();
+      for (let i = 0; i <= 6; i++) {
+        //今天加上前6天
+        let dateItem = new Date(date.getTime() - (i + 1) * 60 * 60 * 24 * 1000); //使用当天时间戳减去以前的时间毫秒（小时*分*秒*毫秒）
+        let m = dateItem.getMonth() + 1; //获取月份js月份从0开始，需要+1
+        let d = dateItem.getDate(); //获取日期
+        let valueItem = `${m}月${d}日`; //组合
+        days.push(valueItem); //添加至数组
+      }
+      this.Xline = days.reverse();
+    },
     initChart() {
       this.chart = echarts.init(document.getElementById(this.id));
-
       this.chart.setOption({
         backgroundColor: "#394056",
         title: {
           top: 20,
-          text: "Requests",
+          text: "折线图堆叠",
           textStyle: {
             fontWeight: "normal",
             fontSize: 16,
@@ -76,17 +107,18 @@ export default {
           itemWidth: 14,
           itemHeight: 5,
           itemGap: 13,
-          data: ["CMCC", "CTCC", "CUCC"],
+          data: ["访问pv", "访问uv", "复制数量"],
           right: "4%",
           textStyle: {
             fontSize: 12,
             color: "#F1F1F3",
           },
         },
+        // 内边距
         grid: {
           top: 100,
-          left: "2%",
-          right: "2%",
+          left: "3%",
+          right: "3%",
           bottom: "2%",
           containLabel: true,
         },
@@ -99,26 +131,13 @@ export default {
                 color: "#57617B",
               },
             },
-            data: [
-              "13:00",
-              "13:05",
-              "13:10",
-              "13:15",
-              "13:20",
-              "13:25",
-              "13:30",
-              "13:35",
-              "13:40",
-              "13:45",
-              "13:50",
-              "13:55",
-            ],
+            data: this.Xline,
           },
         ],
         yAxis: [
           {
             type: "value",
-            name: "(%)",
+            name: "",
             axisTick: {
               show: false,
             },
@@ -142,7 +161,7 @@ export default {
         ],
         series: [
           {
-            name: "CMCC",
+            name: "访问pv",
             type: "line",
             smooth: true,
             symbol: "circle",
@@ -183,10 +202,10 @@ export default {
                 borderWidth: 12,
               },
             },
-            data: [220, 182, 191, 134, 150, 120, 110, 125, 145, 122, 165, 122],
+            data: this.pvs,
           },
           {
-            name: "CTCC",
+            name: "访问uv",
             type: "line",
             smooth: true,
             symbol: "circle",
@@ -227,10 +246,10 @@ export default {
                 borderWidth: 12,
               },
             },
-            data: [120, 110, 125, 145, 122, 165, 122, 220, 182, 191, 134, 150],
+            data: this.uvs,
           },
           {
-            name: "CUCC",
+            name: "复制数量",
             type: "line",
             smooth: true,
             symbol: "circle",
@@ -271,7 +290,7 @@ export default {
                 borderWidth: 12,
               },
             },
-            data: [220, 182, 125, 145, 122, 191, 134, 150, 120, 110, 165, 122],
+            data: this.counts,
           },
         ],
       });

@@ -2,7 +2,7 @@
   <div id="CmContainer">
     <!-- 搜索区 -->
     <div class="Cmform">
-      <el-form :inline="true" size="mini" class="demo-form-inline">
+      <el-form :inline="true" size="small" class="demo-form-inline">
         <slot name="default"></slot>
 
         <el-form-item>
@@ -14,19 +14,6 @@
         </el-form-item>
       </el-form>
     </div>
-<<<<<<< HEAD
-    <!-- 按钮区 -->
-    <div class="Cmbutton">
-      <slot name="Cmbutton">
-        <el-button type="warning" size="small">今天</el-button>
-        <el-button type="warning" size="small">昨天</el-button>
-        <el-button type="warning" size="small">最近三天</el-button>
-        <el-button type="warning" size="small">最近一周</el-button>
-        <el-button type="warning" size="small">最近一月</el-button>
-        <el-button type="warning" size="small">本月</el-button>
-      </slot>
-    </div>
-=======
     <!-- 日期按钮区 -->
     <div class="Cmbutton" @click="logg">
       <slot name="Cmbutton">
@@ -47,7 +34,6 @@
       </slot>
     </div>
 
->>>>>>> 90bfc2a (更新找到的部分)
     <!-- 表格区 -->
     <div class="Cmtable">
       <slot name="tables"></slot>
@@ -59,11 +45,7 @@
           :page-sizes="[10, 20, 30, 40]"
           :page-size="10"
           layout="total, sizes, prev, pager, next, jumper"
-<<<<<<< HEAD
-          :total="2"
-=======
           :total="count"
->>>>>>> 90bfc2a (更新找到的部分)
         >
         </el-pagination>
       </div>
@@ -72,11 +54,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-export default {
-  name: "CmContainer",
-  created() {},
-=======
 // :count="totalcount"          子组件传来分页使用的总条数
 // @sendSize="changeSize"          父传子单页数
 // @sendCurrent="changeCurrent"    父传子页码
@@ -86,32 +63,18 @@ export default {
   name: "CmContainer",
   created() {},
   props: ["count"],
->>>>>>> 90bfc2a (更新找到的部分)
   data() {
     return {
       // 分页部分当前页
       currentPage: 1,
-<<<<<<< HEAD
-=======
       // 快捷日期
       date1: "",
       date2: "",
->>>>>>> 90bfc2a (更新找到的部分)
     };
   },
   methods: {
     // 搜索按钮
     onSubmit() {
-<<<<<<< HEAD
-      console.log("submit!");
-    },
-    // 分页功能两个
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
-    },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
-=======
       this.$emit("filtersearch");
     },
     // 分页功能两个
@@ -159,7 +122,6 @@ export default {
     // 发送日期
     logg() {
       this.$emit("quickpick", [this.date1, this.date2]);
->>>>>>> 90bfc2a (更新找到的部分)
     },
   },
   components: {},
@@ -174,10 +136,7 @@ export default {
 
   .Cmform,
   .Cmbutton {
-<<<<<<< HEAD
-=======
     display: inline-block;
->>>>>>> 90bfc2a (更新找到的部分)
     padding: 10px 20px;
     display: flex;
     justify-content: flex-start;

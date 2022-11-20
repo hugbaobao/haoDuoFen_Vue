@@ -75,34 +75,21 @@
 import Bus from "@/utils/event";
 import {
   getgroupApi,
-<<<<<<< HEAD
-  grouptotalApi,
-  updategroupApi,
-  groupdelApi,
-=======
   updategroupApi,
   groupdelApi,
   groupsearchApi,
->>>>>>> 90bfc2a (更新找到的部分)
 } from "@/api/landing";
 export default {
   name: "Addgroup",
   created() {
-<<<<<<< HEAD
-    this.gettotal();
-=======
->>>>>>> 90bfc2a (更新找到的部分)
     this.getgroup();
     Bus.$on("refreshgroup", () => {
       this.totalcount++;
       this.getgroup();
     });
-<<<<<<< HEAD
-=======
     Bus.$on("getsearch", (val) => {
       this.getsearch(val, this.currentPage, this.singlepage);
     });
->>>>>>> 90bfc2a (更新找到的部分)
   },
   data() {
     return {
@@ -158,16 +145,8 @@ export default {
         this.currentPage,
         this.singlepage
       );
-<<<<<<< HEAD
-      this.tableData = res.data;
-    },
-    async gettotal() {
-      const { data: res } = await grouptotalApi();
-      this.totalcount = res.data;
-=======
       this.tableData = res.data.data;
       this.totalcount = res.data.count;
->>>>>>> 90bfc2a (更新找到的部分)
     },
     async delgroup(val) {
       const { data: res } = await groupdelApi(val);
@@ -188,14 +167,11 @@ export default {
         });
       }
     },
-<<<<<<< HEAD
-=======
     async getsearch(msg) {
       const { data: res } = await groupsearchApi(msg);
       this.tableData = res.data.data;
       this.totalcount = res.data.count;
     },
->>>>>>> 90bfc2a (更新找到的部分)
   },
 };
 </script>

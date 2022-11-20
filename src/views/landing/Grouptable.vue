@@ -94,18 +94,12 @@
               active-text="启用"
               inactive-text="关闭"
               class="switchClass"
-<<<<<<< HEAD
-=======
               @change="toggleenable(scope.row)"
->>>>>>> 90bfc2a (更新找到的部分)
             >
             </el-switch>
           </template>
         </el-table-column>
-<<<<<<< HEAD
-=======
 
->>>>>>> 90bfc2a (更新找到的部分)
         <el-table-column fixed="right" label="操作" width="300">
           <template slot-scope="scope">
             <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
@@ -175,10 +169,6 @@
                 </el-form-item>
 
                 <el-form-item label="选择分组">
-<<<<<<< HEAD
-                  <el-select v-model="editform.group" placeholder="不设置">
-                    <el-option label="分组一" value="shanghai"></el-option>
-=======
                   <el-select
                     clearable
                     v-model="editform.group"
@@ -190,7 +180,6 @@
                       :label="item.group"
                       :value="item.group"
                     ></el-option>
->>>>>>> 90bfc2a (更新找到的部分)
                   </el-select>
                 </el-form-item>
 
@@ -247,37 +236,22 @@
 
 <script>
 import Bus from "@/utils/event";
-<<<<<<< HEAD
-=======
 import store from "@/store/index";
->>>>>>> 90bfc2a (更新找到的部分)
 import Dialog from "@/components/Dialog.vue";
 // 验证规则
 import { validateUrl } from "@/utils/validate";
 import {
   getLandingApi,
-<<<<<<< HEAD
-  gettotalApi,
-  delsingleApi,
-  dellotApi,
-  updatelandingApi,
-=======
   delsingleApi,
   dellotApi,
   updatelandingApi,
   tglandingApi,
->>>>>>> 90bfc2a (更新找到的部分)
 } from "@/api/landing";
 export default {
   name: "Grouptable",
   created() {
-<<<<<<< HEAD
-    this.gettotal();
-    this.getlanding();
-=======
     this.getlanding();
     this.selectlist = store.state.grouplist;
->>>>>>> 90bfc2a (更新找到的部分)
     // 刷新表格
     Bus.$on("refreshtable", () => {
       this.totalcount++;
@@ -312,11 +286,8 @@ export default {
         enable: "",
         words: "",
       },
-<<<<<<< HEAD
-=======
       // 分组列表
       selectlist: [],
->>>>>>> 90bfc2a (更新找到的部分)
     };
   },
   methods: {
@@ -372,31 +343,13 @@ export default {
     },
     // api
     async getlanding() {
-<<<<<<< HEAD
-      const data = await getLandingApi(
-=======
       const { data: res } = await getLandingApi(
->>>>>>> 90bfc2a (更新找到的部分)
         this.currentPage,
         this.singlepage,
         this.filterform
       );
-<<<<<<< HEAD
-      console.log(data);
-      /* const { data: res } = await getLandingApi(
-        this.currentPage,
-        this.singlepage,
-        this.filterform
-      );
-      this.tableData = res.data; */
-    },
-    async gettotal() {
-      const { data: res } = await gettotalApi();
-      this.totalcount = res;
-=======
       this.tableData = res.data;
       this.totalcount = res.count;
->>>>>>> 90bfc2a (更新找到的部分)
     },
     async deletesingle(val) {
       const { data: res } = await delsingleApi(val);
@@ -429,12 +382,9 @@ export default {
         return this.$message.error(res.message);
       }
     },
-<<<<<<< HEAD
-=======
     async enabletoggle(val) {
       await tglandingApi(val.id, val.enable);
     },
->>>>>>> 90bfc2a (更新找到的部分)
     // 表单相关
     // 表单验证
     onSubmit(formName) {
@@ -451,13 +401,10 @@ export default {
     closedialog() {
       Bus.$emit("closedialog");
     },
-<<<<<<< HEAD
-=======
     // 启用状态修改
     toggleenable(row) {
       this.enabletoggle(row);
     },
->>>>>>> 90bfc2a (更新找到的部分)
   },
   components: {
     Dialog,
@@ -540,11 +487,8 @@ export default {
   width: 50px !important;
   margin: 0;
 }
-<<<<<<< HEAD
-=======
 /*下拉框最后一个显示不完全*/
 .el-select-dropdown__wrap.el-scrollbar__wrap {
   margin-bottom: 0 !important;
 }
->>>>>>> 90bfc2a (更新找到的部分)
 </style>

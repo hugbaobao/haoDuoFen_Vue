@@ -5,15 +5,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-export default {
-  name: "Vchat",
-  created() {},
-  data() {
-    return {};
-  },
-  components: {},
-=======
 import store from "@/store/index";
 import { getgrouplistApi } from "@/api/wxmanage";
 export default {
@@ -31,7 +22,6 @@ export default {
       store.dispatch("getwxgroup", res.data);
     },
   },
->>>>>>> 90bfc2a (更新找到的部分)
 };
 </script>
 

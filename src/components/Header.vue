@@ -3,36 +3,56 @@
     <div class="Header_top">
       <div class="top_left">
         <!-- logo -->
-        <router-link to="/home">
+        <router-link to="/inside/home">
           <img
             src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
             alt="logo "
           />
         </router-link>
-        <!-- <a href="javascript:void(0);"> </a> -->
         <!-- 控制按钮 -->
         <div class="toggle_button" @click="toggleflag()">
           <i class="el-icon-s-unfold" v-if="isCollapse"></i>
           <i class="el-icon-s-fold" v-else></i>
         </div>
         <!-- 下拉菜单 -->
-        <el-dropdown>
+        <el-dropdown size="medium" placement="bottom">
           <span class="el-dropdown-link">
             常用<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item icon="el-icon-plus">待定</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-circle-plus">待定</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-circle-plus-outline"
-              >待定</el-dropdown-item
-            >
-            <el-dropdown-item icon="el-icon-check">待定</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-circle-check"
-              >待定</el-dropdown-item
-            >
+            <router-link to="/inside/code/index">
+              <el-dropdown-item icon="el-icon-plus">
+                JS代码安装
+              </el-dropdown-item>
+            </router-link>
+
+            <router-link to="/inside/landing">
+              <el-dropdown-item icon="el-icon-circle-plus"
+                >落地页管理
+              </el-dropdown-item>
+            </router-link>
+
+            <router-link to="/inside/vchat/number">
+              <el-dropdown-item icon="el-icon-circle-plus-outline">
+                微信号管理
+              </el-dropdown-item>
+            </router-link>
+
+            <router-link to="/inside/conversion/link">
+              <el-dropdown-item icon="el-icon-check">
+                统计链接管理
+              </el-dropdown-item>
+            </router-link>
+
+            <router-link to="/inside/conversion/sync">
+              <el-dropdown-item icon="el-icon-circle-check">
+                实时转化详情
+              </el-dropdown-item>
+            </router-link>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
+
       <div class="top_right">
         <div class="right_tab">
           <i class="el-icon-download"></i>
@@ -46,26 +66,29 @@
           <!-- 下拉菜单 -->
           <el-dropdown>
             <span class="el-dropdown-link">
-              用户名占位<i class="el-icon-arrow-down el-icon--right"></i>
+              {{ userinfo.username
+              }}<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item icon="el-icon-plus">待定</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-circle-plus"
-                >待定</el-dropdown-item
-              >
-              <el-dropdown-item icon="el-icon-circle-plus-outline"
-                >待定</el-dropdown-item
-              >
-              <el-dropdown-item icon="el-icon-check">待定</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-circle-check"
-                >待定</el-dropdown-item
-              >
+              <el-dropdown-item icon="el-icon-setting"> 设置 </el-dropdown-item>
+              <router-link to="/login">
+                <el-dropdown-item icon="el-icon-open"> 退出 </el-dropdown-item>
+              </router-link>
             </el-dropdown-menu>
           </el-dropdown>
         </div>
 
         <div class="right_tab">
-          <router-link to="/home">首页</router-link>
+          <router-link to="/inside/home">首页</router-link>
+        </div>
+
+        <div class="right_tab">
+          <el-avatar
+            shape="square"
+            size="medium"
+            :src="userinfo.header"
+            style="vertical-align: middle"
+          ></el-avatar>
         </div>
       </div>
     </div>
@@ -73,12 +96,17 @@
 </template>
 
 <script>
+import store from "@/store/index";
 import Bus from "@/utils/event.js";
 export default {
   name: "Header",
+  created() {
+    this.userinfo = store.state.userinfo;
+  },
   data() {
     return {
       isCollapse: false,
+      userinfo: null,
     };
   },
   components: {},

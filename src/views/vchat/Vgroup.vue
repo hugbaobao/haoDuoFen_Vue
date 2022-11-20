@@ -1,25 +1,5 @@
 <template>
   <div id="Vgroup">
-<<<<<<< HEAD
-    <VchatContainer>
-      <!-- 表单区 -->
-      <template>
-        <el-form-item>
-          <el-input
-            v-model="formInline.user"
-            placeholder="输入分组名称查询"
-          ></el-input>
-        </el-form-item>
-      </template>
-      <!-- 按钮区 -->
-      <template slot="vdialog">
-        <Addgroup></Addgroup>
-      </template>
-    </VchatContainer>
-    <!-- 表格区 -->
-    <div class="grouptable">
-      <Vgrouptable></Vgrouptable>
-=======
     <VchatContainer
       :count="totalcount"
       @sendSize="changeSize"
@@ -91,7 +71,6 @@
         @closer="editbt = false"
         @refresh="torefresh"
       ></my-vgedit>
->>>>>>> 90bfc2a (更新找到的部分)
     </div>
   </div>
 </template>
@@ -99,18 +78,6 @@
 <script>
 import VchatContainer from "@/views/vchat/VchatContainer.vue";
 import Addgroup from "@/components/button/Addgroup.vue";
-<<<<<<< HEAD
-import Vgrouptable from "@/views/vchat/Vgrouptable.vue";
-export default {
-  name: "Vgroup",
-  created() {},
-  data() {
-    return {
-      formInline: {
-        user: "",
-        region: "",
-      },
-=======
 import MyVgedit from "@/components/unshowbutton/VgEdit.vue";
 import { getwxgroupApi, delgroupApi } from "@/api/wxmanage";
 export default {
@@ -131,26 +98,22 @@ export default {
       editbt: false,
       // 发给编辑按钮的数据
       tochild: {},
->>>>>>> 90bfc2a (更新找到的部分)
     };
   },
   components: {
     VchatContainer,
     Addgroup,
-<<<<<<< HEAD
-    Vgrouptable,
-=======
     MyVgedit,
   },
   methods: {
     // 子组件传来的分页数据
     changeSize(val) {
       this.pageSize = val;
-      // this.getcvsrate();
+      this.GetWxgroup();
     },
     changeCurrent(val) {
       this.currentPage = val;
-      // this.getcvsrate();
+      this.GetWxgroup();
     },
 
     // 筛选搜索按钮
@@ -193,21 +156,16 @@ export default {
         this.GetWxgroup();
       }
     },
->>>>>>> 90bfc2a (更新找到的部分)
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .grouptable {
-  padding: 10px 20px;
   background-color: #fff;
 }
-<<<<<<< HEAD
-=======
 .unshow {
   position: absolute;
   right: -888px;
 }
->>>>>>> 90bfc2a (更新找到的部分)
 </style>

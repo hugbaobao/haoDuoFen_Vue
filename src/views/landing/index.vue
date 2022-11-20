@@ -19,20 +19,10 @@
 import Search from "@/views/landing/Search.vue";
 import Add from "@/views/landing/Add.vue";
 import Grouptable from "@/views/landing/Grouptable.vue";
-<<<<<<< HEAD
-export default {
-  name: "LandingIndex",
-  created() {},
-  data() {
-    return {};
-=======
-import { groupallApi } from "@/api/landing";
 import Bus from "@/utils/event";
-import store from "@/store/index";
 export default {
   name: "LandingIndex",
   created() {
-    this.getgrouplist();
     Bus.$on("refreshgroup", () => {
       this.getgrouplist();
     });
@@ -41,24 +31,12 @@ export default {
     return {
       grouplist: [],
     };
->>>>>>> 90bfc2a (更新找到的部分)
   },
   components: {
     Search,
     Add,
     Grouptable,
   },
-<<<<<<< HEAD
-=======
-  methods: {
-    // Api
-    async getgrouplist() {
-      const { data: res } = await groupallApi();
-      localStorage.setItem("grouplist", JSON.stringify(res.data));
-      store.dispatch("getgroup", res.data);
-    },
-  },
->>>>>>> 90bfc2a (更新找到的部分)
 };
 </script>
 

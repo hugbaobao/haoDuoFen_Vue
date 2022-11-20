@@ -1,8 +1,5 @@
 <template>
   <div id="CvsSync">
-<<<<<<< HEAD
-    <CmContainer>
-=======
     <CmContainer
       :count="totalcount"
       @sendSize="changeSize"
@@ -10,29 +7,21 @@
       @filtersearch="filtersearch"
       @quickpick="pickdate"
     >
->>>>>>> 90bfc2a (更新找到的部分)
       <!-- 搜索区 -->
       <template>
         <el-form-item label="">
           <el-select
-<<<<<<< HEAD
-=======
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="form.url"
             placeholder="选择url查询"
             :popper-append-to-body="false"
           >
-<<<<<<< HEAD
-            <el-option label="选择url查询" value="shanghai"></el-option>
-=======
             <el-option
               v-for="item in landinglist"
               :key="item.id"
               :label="item.url"
               :value="item.id"
             ></el-option>
->>>>>>> 90bfc2a (更新找到的部分)
           </el-select>
         </el-form-item>
         <!-- 默认时间选择 -->
@@ -57,33 +46,23 @@
 
         <el-form-item label="">
           <el-select
-<<<<<<< HEAD
-=======
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="form.group"
             placeholder="选择分组"
             :popper-append-to-body="false"
           >
-<<<<<<< HEAD
-            <el-option label="一组" value="shanghai"></el-option>
-=======
             <el-option
               v-for="item in selectlist"
               :key="item.id"
               :label="item.group"
               :value="item.group"
             ></el-option>
->>>>>>> 90bfc2a (更新找到的部分)
           </el-select>
         </el-form-item>
         <!-- 转化类型 -->
         <el-form-item label="">
           <el-select
-<<<<<<< HEAD
-=======
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="form.class"
             placeholder="选择转化类型"
             :popper-append-to-body="false"
@@ -109,10 +88,7 @@
         <!-- 排序 -->
         <el-form-item label="">
           <el-select
-<<<<<<< HEAD
-=======
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="form.order"
             placeholder="排序"
             :popper-append-to-body="false"
@@ -128,10 +104,7 @@
         <!-- 来源 -->
         <el-form-item label="">
           <el-select
-<<<<<<< HEAD
-=======
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="form.source"
             placeholder="选择来源"
             :popper-append-to-body="false"
@@ -150,10 +123,7 @@
         <!-- 数据上报状态 -->
         <el-form-item label="">
           <el-select
-<<<<<<< HEAD
-=======
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="form.state"
             placeholder="数据上报状态"
             :popper-append-to-body="false"
@@ -209,11 +179,7 @@
             >
             </el-table-column>
             <el-table-column
-<<<<<<< HEAD
-              prop="address"
-=======
               prop="group"
->>>>>>> 90bfc2a (更新找到的部分)
               label="落地页分组"
               show-overflow-tooltip
               width="100"
@@ -221,16 +187,10 @@
             >
             </el-table-column>
             <el-table-column
-<<<<<<< HEAD
-              prop="address"
-              label="访问url"
-              show-overflow-tooltip
-=======
               prop="url"
               label="访问url"
               show-overflow-tooltip
               width="150"
->>>>>>> 90bfc2a (更新找到的部分)
               v-if="checkbox.url"
             >
             </el-table-column>
@@ -278,45 +238,28 @@
             >
             </el-table-column>
             <el-table-column
-<<<<<<< HEAD
-              prop="address"
-              label="转化时间"
-              show-overflow-tooltip
-=======
               prop="cvsdate"
               label="转化时间"
               show-overflow-tooltip
               width="150"
->>>>>>> 90bfc2a (更新找到的部分)
               v-if="checkbox.shijian"
             >
             </el-table-column>
             <el-table-column
-<<<<<<< HEAD
-              prop="address"
-=======
               prop="cvstime"
->>>>>>> 90bfc2a (更新找到的部分)
               label="转化时长"
               show-overflow-tooltip
               v-if="checkbox.shichang"
             >
             </el-table-column>
             <el-table-column
-<<<<<<< HEAD
-              prop="address"
-=======
               prop="type"
->>>>>>> 90bfc2a (更新找到的部分)
               label="转化类型"
               show-overflow-tooltip
               v-if="checkbox.leixing"
             >
             </el-table-column>
             <el-table-column
-<<<<<<< HEAD
-              prop="address"
-=======
               prop="target"
               label="转化目标"
               show-overflow-tooltip
@@ -326,62 +269,41 @@
             </el-table-column>
             <el-table-column
               prop="city.cip"
->>>>>>> 90bfc2a (更新找到的部分)
               label="ip"
               show-overflow-tooltip
               v-if="checkbox.ip"
             >
             </el-table-column>
             <el-table-column
-<<<<<<< HEAD
-              prop="address"
-=======
               prop="city.cname"
->>>>>>> 90bfc2a (更新找到的部分)
               label="地区"
               show-overflow-tooltip
               v-if="checkbox.diqu"
             >
             </el-table-column>
             <el-table-column
-<<<<<<< HEAD
-              prop="address"
-=======
               prop="equipment"
->>>>>>> 90bfc2a (更新找到的部分)
               label="访问设备"
               show-overflow-tooltip
               v-if="checkbox.shebei"
             >
             </el-table-column>
             <el-table-column
-<<<<<<< HEAD
-              prop="address"
-=======
               prop="stay"
->>>>>>> 90bfc2a (更新找到的部分)
               label="浏览时长"
               show-overflow-tooltip
               v-if="checkbox.liulan"
             >
             </el-table-column>
             <el-table-column
-<<<<<<< HEAD
-              prop="address"
-=======
               prop="rate"
->>>>>>> 90bfc2a (更新找到的部分)
               label="访问比例"
               show-overflow-tooltip
               v-if="checkbox.bili"
             >
             </el-table-column>
             <el-table-column
-<<<<<<< HEAD
-              prop="address"
-=======
               prop="wx"
->>>>>>> 90bfc2a (更新找到的部分)
               label="显示微信号"
               show-overflow-tooltip
               width="100"
@@ -396,11 +318,7 @@
             >
             </el-table-column>
             <el-table-column
-<<<<<<< HEAD
-              prop="address"
-=======
               prop="search"
->>>>>>> 90bfc2a (更新找到的部分)
               label="搜索引擎"
               show-overflow-tooltip
               v-if="checkbox.yinqing"
@@ -417,107 +335,7 @@
 
           <!-- 动态增减表头 -->
           <div class="dynamic">
-<<<<<<< HEAD
-            <el-dropdown trigger="click" :hide-on-click="false">
-              <span class="el-dropdown-link">
-                <i class="el-icon-setting"></i>
-              </span>
-
-              <el-dropdown-menu slot="dropdown">
-                <el-scrollbar style="height: 300px">
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.zhanghao">账号</el-checkbox>
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.luodiye"
-                      >落地页分组</el-checkbox
-                    >
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.url">访问url</el-checkbox>
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.beizhu">备注</el-checkbox>
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.jihua">计划</el-checkbox>
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.danyuan">单元</el-checkbox>
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.zhuizong"
-                      >追踪关键词</el-checkbox
-                    >
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.paiming"
-                      >展现排名</el-checkbox
-                    >
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.shangbao"
-                      >数据上报</el-checkbox
-                    >
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.shijian"
-                      >转化时间</el-checkbox
-                    >
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.shichang"
-                      >转化时长</el-checkbox
-                    >
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.leixing"
-                      >转化类型</el-checkbox
-                    >
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.ip">ip</el-checkbox>
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.diqu">地区</el-checkbox>
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.shebei"
-                      >访问设备</el-checkbox
-                    >
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.liulan"
-                      >浏览时长</el-checkbox
-                    >
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.bili">访问比例</el-checkbox>
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.xianshi"
-                      >显示微信号</el-checkbox
-                    >
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.sousuo">搜索词</el-checkbox>
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.yinqing"
-                      >搜索引擎</el-checkbox
-                    >
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <el-checkbox v-model="checkbox.laiyuan"
-                      >来源链接</el-checkbox
-                    >
-                  </el-dropdown-item>
-                </el-scrollbar>
-              </el-dropdown-menu>
-            </el-dropdown>
-=======
             <TableSwitch @changetableitem="changebox"></TableSwitch>
->>>>>>> 90bfc2a (更新找到的部分)
           </div>
         </div>
       </template>
@@ -527,13 +345,6 @@
 
 <script>
 import CmContainer from "@/components/containner/CmContainer.vue";
-<<<<<<< HEAD
-export default {
-  name: "CvsSync",
-  created() {},
-  data() {
-    return {
-=======
 import TableSwitch from "@/components/utils/switch.vue";
 import { getmonitorApi } from "@/api/conversion";
 import store from "@/store/index";
@@ -547,7 +358,6 @@ export default {
   data() {
     return {
       // 搜索表单
->>>>>>> 90bfc2a (更新找到的部分)
       form: {
         url: "",
         group: "",
@@ -559,9 +369,6 @@ export default {
         state: "",
         words: "",
       },
-<<<<<<< HEAD
-      tableData: [],
-=======
       // 表格数据
       tableData: [],
       totalcount: 0,
@@ -573,7 +380,6 @@ export default {
       currentPage: 1,
       pageSize: 10,
       // 控制表格元素是否显示
->>>>>>> 90bfc2a (更新找到的部分)
       checkbox: {
         zhanghao: false,
         luodiye: true,
@@ -587,10 +393,7 @@ export default {
         shijian: true,
         shichang: true,
         leixing: true,
-<<<<<<< HEAD
-=======
         mubiao: true,
->>>>>>> 90bfc2a (更新找到的部分)
         ip: true,
         diqu: true,
         shebei: true,
@@ -608,11 +411,6 @@ export default {
     handleSelectionChange(val) {
       this.multipleSelection = val;
     },
-<<<<<<< HEAD
-  },
-  components: {
-    CmContainer,
-=======
 
     // 子组件传来的分页数据
     changeSize(val) {
@@ -654,7 +452,6 @@ export default {
   components: {
     CmContainer,
     TableSwitch,
->>>>>>> 90bfc2a (更新找到的部分)
   },
 };
 </script>
@@ -673,21 +470,8 @@ export default {
     position: absolute;
     right: 10px;
     top: -35px;
-<<<<<<< HEAD
-
-    .el-icon-setting {
-      font-size: 20px;
-    }
   }
 }
-.el-dropdown-link {
-  cursor: pointer;
-  color: #409eff;
-}
-=======
-  }
-}
->>>>>>> 90bfc2a (更新找到的部分)
 .el-icon-arrow-down {
   font-size: 12px;
 }

@@ -3,11 +3,7 @@
     <div class="group-table">
       <el-table
         ref="multipleTable"
-<<<<<<< HEAD
-        :data="tableData"
-=======
         :data="table"
->>>>>>> 90bfc2a (更新找到的部分)
         tooltip-effect="dark"
         style="width: 100%"
         stripe
@@ -15,24 +11,11 @@
         :header-cell-style="{
           background: '#fafafa',
         }"
-<<<<<<< HEAD
-        @selection-change="handleSelectionChange"
-        empty-text="没有开启微信管理的链接，请在落地页管理中开启微信在线管理功能"
-      >
-        <el-table-column type="selection" width="50" align="center">
-        </el-table-column>
-        <el-table-column fixed label="分组名称">
-          <template slot-scope="scope">{{ scope.row.date }}</template>
-        </el-table-column>
-        <el-table-column prop="name" label="微信号数量"> </el-table-column>
-        <el-table-column prop="address" label="备注" show-overflow-tooltip>
-=======
         empty-text="没有开启微信管理的链接，请在落地页管理中开启微信在线管理功能"
       >
         <el-table-column fixed label="分组名称" prop="name"> </el-table-column>
         <el-table-column prop="count" label="微信号数量"> </el-table-column>
         <el-table-column prop="remarks" label="备注" show-overflow-tooltip>
->>>>>>> 90bfc2a (更新找到的部分)
         </el-table-column>
 
         <el-table-column fixed="right" label="操作" width="300">
@@ -51,51 +34,18 @@
         </el-table-column>
       </el-table>
     </div>
-<<<<<<< HEAD
-    <div class="page">
-      <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage"
-        :page-sizes="[10, 20, 30, 40]"
-        :page-size="10"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="2"
-      >
-      </el-pagination>
-    </div>
-=======
->>>>>>> 90bfc2a (更新找到的部分)
   </div>
 </template>
 
 <script>
 export default {
   name: "VGrouptable",
-<<<<<<< HEAD
-  created() {},
-  data() {
-    return {
-      tableData: [
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
-        },
-      ],
-=======
   created() {
     console.log(this.table);
   },
   props: ["table"],
   data() {
     return {
->>>>>>> 90bfc2a (更新找到的部分)
       switchflag: false,
       switchflags: false,
       //   分页相关
@@ -103,15 +53,9 @@ export default {
     };
   },
   methods: {
-<<<<<<< HEAD
-    handleSelectionChange(val) {
-      this.multipleSelection = val;
-    },
-=======
     /*     handleSelectionChange(val) {
       this.multipleSelection = val;
     }, */
->>>>>>> 90bfc2a (更新找到的部分)
     handleEdit(index, row) {
       console.log(index, row);
     },
@@ -140,16 +84,6 @@ export default {
     align-items: center;
     padding: 10px 15px;
   }
-<<<<<<< HEAD
-  /* .group-table {
-    } */
-  .page {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
-=======
->>>>>>> 90bfc2a (更新找到的部分)
 }
 </style>
 <style>

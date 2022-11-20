@@ -5,15 +5,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-export default {
-  name: "Conversion",
-  created() {},
-  data() {
-    return {};
-  },
-  components: {},
-=======
 import store from "@/store/index";
 import { groupallApi, landingallApi } from "@/api/landing";
 export default {
@@ -40,7 +31,6 @@ export default {
       store.dispatch("getlanding", res.data);
     },
   },
->>>>>>> 90bfc2a (更新找到的部分)
 };
 </script>
 

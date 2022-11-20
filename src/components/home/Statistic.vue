@@ -4,37 +4,37 @@
       <el-col :xs="24" :sm="12" :md="8" :lg="4"
         ><div class="grid-content bg-purple">
           <h3>访问PV</h3>
-          <p>{{}}</p>
+          <p>{{ statistic.pv }}</p>
         </div></el-col
       >
       <el-col :xs="24" :sm="12" :md="8" :lg="4"
         ><div class="grid-content bg-purple">
           <h3>访问UV</h3>
-          <p>{{}}</p>
+          <p>{{ statistic.uv }}</p>
         </div></el-col
       >
       <el-col :xs="24" :sm="12" :md="8" :lg="4"
         ><div class="grid-content bg-purple">
           <h3>访问IP</h3>
-          <p>{{}}</p>
+          <p>{{ statistic.ip }}</p>
         </div></el-col
       >
       <el-col :xs="24" :sm="12" :md="8" :lg="4"
         ><div class="grid-content bg-purple">
           <h3>复制数量</h3>
-          <p>{{}}</p>
+          <p>{{ statistic.count }}</p>
         </div></el-col
       >
       <el-col :xs="24" :sm="12" :md="8" :lg="4"
         ><div class="grid-content bg-purple">
           <h3>打开微信</h3>
-          <p>{{}}</p>
+          <p>{{ statistic.open }}</p>
         </div></el-col
       >
       <el-col :xs="24" :sm="12" :md="8" :lg="4"
         ><div class="grid-content bg-purple">
           <h3>行为转化</h3>
-          <p>{{}}</p>
+          <p>{{ statistic.cvs }}</p>
         </div></el-col
       >
     </el-row>
@@ -44,6 +44,7 @@
 <script>
 export default {
   name: "Statistic",
+  props: ["statistic"],
   components: {},
 };
 </script>

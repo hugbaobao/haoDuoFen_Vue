@@ -1,14 +1,19 @@
 <template>
   <div id="VGrouptable">
     <div class="button">
-      <el-button type="warning" size="small">批量修改</el-button>
+      <el-popconfirm title="确定删除吗？" @confirm="handleDeletelot">
+        <el-button
+          type="warning"
+          slot="reference"
+          size="small"
+          style="margin-right: 10px"
+          >批量修改</el-button
+        >
+      </el-popconfirm>
       <el-button type="warning" size="small">批量删除</el-button>
       <el-button type="warning" size="small">上传二维码</el-button>
     </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> 90bfc2a (更新找到的部分)
     <div class="group-table">
       <el-table
         ref="multipleTable"
@@ -25,47 +30,6 @@
       >
         <el-table-column type="selection" width="50" align="center">
         </el-table-column>
-<<<<<<< HEAD
-        <el-table-column fixed label="分组名称">
-          <template slot-scope="scope">{{ scope.row.date }}</template>
-        </el-table-column>
-        <el-table-column prop="name" label="微信号"> </el-table-column>
-        <el-table-column prop="address" label="备注" show-overflow-tooltip>
-        </el-table-column>
-        <el-table-column prop="address" label="二维码" show-overflow-tooltip>
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          label="微信号名称"
-          show-overflow-tooltip
-        >
-        </el-table-column>
-        <el-table-column prop="address" label="性别" show-overflow-tooltip>
-        </el-table-column>
-        <el-table-column prop="address" label="在线状态" show-overflow-tooltip>
-        </el-table-column>
-        <el-table-column prop="address" label="自动控制" show-overflow-tooltip>
-        </el-table-column>
-        <el-table-column prop="address" label="权重" show-overflow-tooltip>
-        </el-table-column>
-        <el-table-column prop="address" label="最近状态" show-overflow-tooltip>
-        </el-table-column>
-        <el-table-column prop="address" label="今日复制" show-overflow-tooltip>
-        </el-table-column>
-      </el-table>
-    </div>
-    <div class="page">
-      <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage"
-        :page-sizes="[10, 20, 30, 40]"
-        :page-size="10"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="2"
-      >
-      </el-pagination>
-=======
         <el-table-column fixed label="分组名称" prop="Wxgroup.name" width="100">
         </el-table-column>
         <el-table-column prop="wxh" label="微信号"> </el-table-column>
@@ -94,25 +58,17 @@
         <el-table-column label="在线状态" show-overflow-tooltip>
           <template slot-scope="scope">
             <el-switch
-              :value="scope.row.online"
+              v-model="scope.row.online"
               active-text="上线"
               inactive-text="下线"
               class="switchClass"
+              @change="handleChangeOnline($event, scope.row)"
             >
             </el-switch>
           </template>
         </el-table-column>
 
-        <el-table-column label="自动控制" show-overflow-tooltip>
-          <template slot-scope="scope">
-            <el-switch
-              :value="scope.row.control"
-              active-text="开启"
-              inactive-text="关闭"
-              class="switchClass"
-            >
-            </el-switch>
-          </template>
+        <el-table-column label="自动控制" prop="control" width="100">
         </el-table-column>
 
         <el-table-column
@@ -124,7 +80,7 @@
           <template slot-scope="scope">
             <el-input-number
               v-model="scope.row.level"
-              @change="handlepower(scope.$index, scope.row)"
+              @change="handlepower($event, scope.row)"
               :min="1"
               :max="5"
               size="mini"
@@ -166,33 +122,34 @@
 
     <!-- 二维码 -->
     <div class="qrcode">
-      <my-qrcode :outershow="outerShow" @closer="outerShow = false"></my-qrcode>
->>>>>>> 90bfc2a (更新找到的部分)
+      <my-qrcode
+        :outershow="outerShow"
+        @closer="outerShow = false"
+        @refresh="refreshtable"
+        :image="sendimg"
+      ></my-qrcode>
+    </div>
+
+    <div class="unshow">
+      <Addvnumber
+        ref="controldialog"
+        dialogtitle="编辑微信号"
+        @sendform="updataweixin"
+      ></Addvnumber>
     </div>
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
-export default {
-  name: "VGrouptable",
-  created() {},
-  data() {
-    return {
-      tableData: [
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
-        },
-      ],
-=======
+import Bus from "@/utils/event";
 import MyQrcode from "@/components/unshowbutton/Qrcode.vue";
+import Addvnumber from "@/components/button/Addvnumber.vue";
+import {
+  updateWxApi,
+  deletewxApi,
+  updateOnlineApi,
+  updatelevelApi,
+} from "@/api/wxmanage";
 export default {
   name: "VGrouptable",
   created() {},
@@ -202,47 +159,98 @@ export default {
       num: 1,
       // 二维码
       outerShow: false,
->>>>>>> 90bfc2a (更新找到的部分)
 
       //   分页相关
       currentPage: 1,
+      // 准备发给弹框的图片
+      sendimg: {
+        id: 0,
+        sendimg: "",
+      },
+      multipleSelection: [],
     };
   },
   methods: {
     handleSelectionChange(val) {
-      this.multipleSelection = val;
+      this.multipleSelection = val.map((item) => {
+        return item.id;
+      });
     },
-<<<<<<< HEAD
-=======
     handlecheck(index, row) {
-      console.log(index, row);
+      this.sendimg.id = row.id;
+      this.sendimg.sendimg = row.erweima;
       this.outerShow = true;
     },
-    handlepower(index, row) {
-      console.log(index, row);
+    handlepower(val, row) {
+      this.changelevel(row.id, val);
     },
->>>>>>> 90bfc2a (更新找到的部分)
     handleEdit(index, row) {
-      console.log(index, row);
+      this.$refs.controldialog.opendialog(row);
     },
     handleDelete(index, row) {
-      console.log(index, row);
+      this.deleteweixin(row.id);
     },
-    // 分页功能两个
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
+    handleDeletelot() {
+      if (this.multipleSelection.length == 0) {
+        this.$message({
+          message: "未选择任何数据",
+          type: "warning",
+        });
+      } else {
+        this.deleteweixin(this.multipleSelection);
+        this.$emit("torefresh");
+      }
     },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+    handleChangeOnline(val, row) {
+      if (val == true) {
+        val = 1;
+      } else {
+        val = 0;
+      }
+      this.changeonline(row.id, val);
+    },
+
+    refreshtable() {
+      this.$emit("torefresh");
+    },
+
+    // Api
+    async updataweixin(form) {
+      const { data: res } = await updateWxApi(form);
+      if (res.code == 200) {
+        Bus.$emit("closedialog");
+        this.$message({
+          message: "修改成功",
+          type: "success",
+        });
+        this.$emit("torefresh");
+      } else {
+        return this.$message.error(res.message);
+      }
+    },
+    async deleteweixin(val) {
+      const { data: res } = await deletewxApi(val);
+      if (res.code == 200) {
+        this.$message({
+          message: "删除成功",
+          type: "success",
+        });
+        this.$emit("torefresh");
+      } else {
+        return this.$message.error("发生错误");
+      }
+    },
+    async changeonline(ids, val) {
+      await updateOnlineApi(ids, val);
+    },
+    async changelevel(ids, val) {
+      await updatelevelApi(ids, val);
     },
   },
-<<<<<<< HEAD
-  components: {},
-=======
   components: {
     MyQrcode,
+    Addvnumber,
   },
->>>>>>> 90bfc2a (更新找到的部分)
 };
 </script>
 
@@ -260,6 +268,11 @@ export default {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+  }
+
+  .unshow {
+    position: absolute;
+    right: -999px;
   }
 }
 </style>
@@ -296,8 +309,9 @@ export default {
 /* 调整按钮的宽度 */
 .switchClass.el-switch .el-switch__core,
 .el-switch .el-switch__label {
-  width: 45px !important;
+  width: 50px !important;
   margin: 0;
+  padding-left: 4px;
 }
 
 /*下拉框最后一个显示不完全*/

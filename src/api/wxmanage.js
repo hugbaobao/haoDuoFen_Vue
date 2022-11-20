@@ -18,6 +18,61 @@ export const cotrWxApi = function (pages, limit, filterform) {
   });
 };
 
+// 添加微信号
+export const appendWxApi = function (form) {
+  return request.post("/weixin/append", {
+    data: form,
+  });
+};
+// 改微信号
+export const updateWxApi = function (form) {
+  return request.post("/weixin/udwx", {
+    data: form,
+  });
+};
+
+// 删除微信
+export const deletewxApi = function (id) {
+  return request.get("/weixin/delwx", {
+    params: {
+      arr: id,
+    },
+  });
+};
+
+// 改二维码
+export const updateQRApi = function (form) {
+  return request.post("/weixin/udqr", {
+    data: form,
+  });
+};
+// 改在线状态
+export const updateOnlineApi = function (id, status) {
+  return request.get("/weixin/cjol", {
+    params: {
+      id: id,
+      online: status,
+    },
+  });
+};
+// 改权重
+export const updatelevelApi = function (id, val) {
+  return request.get("/weixin/cjlv", {
+    params: {
+      id: id,
+      level: val,
+    },
+  });
+};
+// 删除二维码
+export const deleteQRApi = function (id) {
+  return request.get("/weixin/delqr", {
+    params: {
+      id: id,
+    },
+  });
+};
+
 // 分组
 // 增
 export const appendwxgroupApi = function (form) {

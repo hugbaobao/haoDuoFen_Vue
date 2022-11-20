@@ -4,10 +4,7 @@
       <template>
         <el-form-item label="">
           <el-select
-<<<<<<< HEAD
-=======
             clearable
->>>>>>> 90bfc2a (更新找到的部分)
             v-model="formInline.group"
             placeholder="选择分组"
             :popper-append-to-body="false"
