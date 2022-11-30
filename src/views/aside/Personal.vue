@@ -1,5 +1,7 @@
 <template>
-  <div id="Personal">我的账号</div>
+  <div id="Personal">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>

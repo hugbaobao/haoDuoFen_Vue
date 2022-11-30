@@ -149,7 +149,6 @@ export default {
   }
   .Cmtable {
     background-color: #fafafa;
-    border: 1px solid #eee;
     margin: 0 20px;
 
     .page {

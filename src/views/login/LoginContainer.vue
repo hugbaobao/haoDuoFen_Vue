@@ -19,9 +19,10 @@ export default {
 
 <style lang="scss" scoped>
 #LoginContainer {
+  width: 100%;
   height: 100vh;
   background: url(../../assets/images/bj.jpg) no-repeat center;
-  background-size: auto 100vh;
+  background-size: 100% 100vh;
 
   .formcontent {
     background-color: #ffffff;

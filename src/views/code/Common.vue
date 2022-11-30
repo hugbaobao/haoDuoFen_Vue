@@ -1,76 +1,48 @@
 <template>
-  <div id="CodeIndex">
+  <div id="Common">
     <div class="step">
       <el-steps direction="vertical" :active="4" finish-status="success">
         <el-step title="步骤 1"></el-step>
         <el-step title="步骤 2"></el-step>
         <el-step title="步骤 3"></el-step>
-        <el-step title="步骤 4"></el-step>
       </el-steps>
     </div>
     <div class="code_block">
       <div class="block_item">
-        <h2>
-          <span>* </span>基础js代码<i
-            >（必须添加在落地页上！支持https，安装后可使用除微信在线管理功能外所有功能）</i
-          >
-        </h2>
+        <h2><span>* </span>转化类型按钮id<i>（添加在具体按钮标签上）</i></h2>
 
         <div class="code">
           <pre>
-           1.引入jquery 2. &lt;script type="text/javascript" src="monitor.js"&gt;&lt;/script&gt;
+            1.点击按钮 id="clicktrigger" 2.长按按钮 id="touchtrigger"
           </pre>
         </div>
-        <h6>添加方法：请将此代码放在落地页头部的head标签前面！</h6>
+        <h6>添加方法：请将此代码标签内部！</h6>
       </div>
 
       <div class="block_item">
         <h2>
-          <span>* </span>微信在线管理代码<i
-            >（按需添加，添加后可使用微信号在线管理,点击复制，打开微信等功能！）</i
+          <span>* </span>转化类型埋点代码<i
+            >（必须添加在落地页具体按钮标签上）</i
           >
         </h2>
 
         <div class="code">
           <pre>
-            微信号代码： &lt;span id="inner_text"&gt;默认微信号&lt;/span&gt;
+            &lt;span type_index="1"&gt;默认微信号&lt;/span&gt;
           </pre>
         </div>
-        <h6>
-          添加方法：将微信号代码替换落地页上的微信号，并且需要替换页面上所有的微信号！
-        </h6>
+        <h6>添加方法：添加type_index属性</h6>
       </div>
 
       <div class="block_item">
-        <h2>
-          <span>* </span>微信名称管理代码<i
-            >（按需添加，添加后可显示微信名称）</i
-          >
-        </h2>
+        <h2><span>* </span>转化目标埋点代码<i>（按需添加，名称自定义）</i></h2>
 
         <div class="code">
           <pre>
-            微信号名称代码： &lt;span id="inner_name"&gt;默认微信号&lt;/span&gt;
+            &lt;span targetelement="顶部点击按钮"&gt;默认微信号&lt;/span&gt;
           </pre>
         </div>
-        <h6>
-          添加方法：将微信名称代码替换落地页上的微信名称，并且需要替换页面上所有的微信名称！
-        </h6>
-      </div>
-
-      <div class="block_item">
-        <h2>
-          <span>* </span>二维码代码<i
-            >（按需添加，若需要统计二维码，使用二维码轮播等，请正确替换二维码标签！）</i
-          >
-        </h2>
-
-        <div class="code">
-          <pre>
-            二维码标签： &lt; img id="atr_img" src="默认二维码地址"/&gt;
-          </pre>
-        </div>
-        <h6>添加方法：替换页面上显示二维码的img标签即可</h6>
+        <h6>添加方法：添加targetelement属性</h6>
       </div>
     </div>
   </div>
@@ -78,7 +50,7 @@
 
 <script>
 export default {
-  name: "CodeIndex",
+  name: "Common",
   created() {},
   data() {
     return {};
@@ -88,7 +60,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#CodeIndex {
+#Common {
   padding: 10px;
   display: flex;
   justify-content: flex-start;

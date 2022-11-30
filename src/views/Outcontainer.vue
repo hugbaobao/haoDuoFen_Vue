@@ -19,17 +19,22 @@
 
 <script>
 import store from "@/store/index";
+import Bus from "@/utils/event.js";
 import Header from "@/components/Header.vue";
 import Aside from "@/components/Aside.vue";
 import Main from "@/components/Main";
 import { getUSerApi } from "@/api/admin";
-import { groupallApi } from "@/api/landing";
+import { groupallApi, landingallApi } from "@/api/landing";
 export default {
   name: "Outcontainer",
   created() {
     this.IDcode = store.state.IDcode;
     this.getuser();
     this.getgrouplist();
+    this.getlandinglist();
+    Bus.$on("refreshuserinfo", () => {
+      this.getuser();
+    });
   },
   data() {
     return {
@@ -53,6 +58,12 @@ export default {
       const { data: res } = await groupallApi();
       localStorage.setItem("grouplist", JSON.stringify(res.data));
       store.dispatch("getgroup", res.data);
+    },
+
+    async getlandinglist() {
+      const { data: res } = await landingallApi();
+      sessionStorage.setItem("landinglist", JSON.stringify(res.data));
+      store.dispatch("getlanding", res.data);
     },
   },
 };

@@ -34,7 +34,8 @@
         >
           <el-table-column fixed label="分组名称" prop="name">
           </el-table-column>
-          <el-table-column prop="count" label="微信号数量"> </el-table-column>
+          <el-table-column prop="weixin_count" label="微信号数量">
+          </el-table-column>
           <el-table-column prop="remarks" label="备注" show-overflow-tooltip>
           </el-table-column>
 

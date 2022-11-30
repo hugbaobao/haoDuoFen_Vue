@@ -10,7 +10,8 @@
         stripe
       >
         <el-table-column prop="group" label="分组名称"> </el-table-column>
-        <el-table-column prop="total" label="落地页数量"> </el-table-column>
+        <el-table-column prop="landing_count" label="落地页数量">
+        </el-table-column>
         <el-table-column prop="remarks" label="备注"> </el-table-column>
         <el-table-column fixed="right" label="操作" width="300">
           <template slot-scope="scope">

@@ -27,7 +27,7 @@
       >
         <el-table-column type="selection" width="55" align="center">
         </el-table-column>
-        <el-table-column fixed prop="group" label="所属分组" width="120">
+        <el-table-column fixed prop="Wxgroup.name" label="所属分组" width="120">
         </el-table-column>
         <el-table-column prop="url" label="落地页url" width="250">
         </el-table-column>

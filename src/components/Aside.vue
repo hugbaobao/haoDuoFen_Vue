@@ -19,8 +19,8 @@
             <span>js代码和教程</span>
           </template>
           <el-menu-item index="/inside/code/index">js代码安装</el-menu-item>
+          <el-menu-item index="/inside/code/common">回传代码</el-menu-item>
           <el-menu-item index="">API接口</el-menu-item>
-          <el-menu-item index="">使用教程</el-menu-item>
           <el-menu-item index="">js代码托管</el-menu-item>
           <el-menu-item index="">常见问题</el-menu-item>
         </el-submenu>
@@ -182,11 +182,13 @@
             <i class="el-icon-s-custom"></i>
             <span>我的账号</span>
           </template>
-          <el-menu-item index="/inside/personal/:1">账号信息</el-menu-item>
-          <el-menu-item index="/inside/personal/:2">子账号管理</el-menu-item>
-          <el-menu-item index="/inside/personal/:3">升级/续费</el-menu-item>
-          <el-menu-item index="/inside/personal/:4">邀请注册返现</el-menu-item>
-          <el-menu-item index="/inside/personal/:5">问题反馈</el-menu-item>
+          <el-menu-item index="/inside/personal/personal"
+            >账号信息</el-menu-item
+          >
+          <el-menu-item index="">子账号管理</el-menu-item>
+          <el-menu-item index="">升级/续费</el-menu-item>
+          <el-menu-item index="">邀请注册返现</el-menu-item>
+          <el-menu-item index="">问题反馈</el-menu-item>
         </el-submenu>
       </el-menu>
     </el-scrollbar>

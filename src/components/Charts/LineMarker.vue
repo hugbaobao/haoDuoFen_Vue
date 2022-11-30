@@ -55,7 +55,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.initChart();
-    }, 200);
+    }, 1000);
   },
   beforeDestroy() {
     if (!this.chart) {

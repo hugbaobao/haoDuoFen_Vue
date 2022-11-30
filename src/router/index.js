@@ -64,6 +64,12 @@ const routes = [
             component: () => import("@/views/code/Index.vue"),
             meta: { title: "代码教程", icon: "MyCode", noCache: true },
           },
+          {
+            path: "common",
+            name: "MyCodecommon",
+            component: () => import("@/views/code/Common.vue"),
+            meta: { title: "回传代码", icon: "MyCodecommon", noCache: true },
+          },
         ],
       },
       {
@@ -387,10 +393,19 @@ const routes = [
         meta: { title: "微信计数器", icon: "MyVcount", noCache: true },
       },
       {
-        path: "personal/:id",
+        path: "personal",
         name: "MyPersonal",
         component: () => import("@/views/aside/Personal.vue"),
         meta: { title: "我的账号", icon: "MyPersonal", noCache: true },
+        children: [
+          { path: "", redirect: "/inside/personal/personal" },
+          {
+            path: "personal",
+            name: "MyInformation",
+            component: () => import("@/views/personal/Personal.vue"),
+            meta: { title: "账号信息", icon: "MyInformation", noCache: true },
+          },
+        ],
       },
     ],
   },

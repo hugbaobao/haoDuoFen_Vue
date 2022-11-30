@@ -152,6 +152,7 @@ export default {
         text-align: center;
         font-size: 24px;
         background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
         margin-right: 40px;
 
         i {

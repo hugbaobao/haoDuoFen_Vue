@@ -55,7 +55,7 @@
               v-for="item in grouplist"
               :key="item.id"
               :label="item.group"
-              :value="item.group"
+              :value="item.id"
             ></el-option>
           </el-select>
         </el-form-item>
@@ -67,8 +67,8 @@
             placeholder="选择转化类型"
             :popper-append-to-body="false"
           >
-            <el-option label="点击" value="1"></el-option>
-            <el-option label="长按" value="2"></el-option>
+            <el-option label="点击" :value="1"></el-option>
+            <el-option label="长按" :value="2"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item>
@@ -91,39 +91,38 @@
             }"
             empty-text="无数据"
           >
-            <el-table-column prop="newtime" label="日期" show-overflow-tooltip>
-            </el-table-column>
-
-            <el-table-column fixed label="落地页分组">
-              <template slot-scope="scope">
-                {{ scope.row.landing.group }}
-              </template>
-            </el-table-column>
-
-            <el-table-column label="落地页url" width="250">
-              <template slot-scope="scope">
-                {{ scope.row.landing.url }}
-              </template>
-            </el-table-column>
-
-            <el-table-column prop="type" label="转化类型" show-overflow-tooltip>
+            <el-table-column
+              prop="Landing.neardate"
+              label="日期"
+              width="120"
+              show-overflow-tooltip=""
+            >
             </el-table-column>
 
             <el-table-column
-              prop="conversion"
+              fixed
+              prop="Landing.Group.group"
+              label="落地页分组"
+              width="100"
+            >
+            </el-table-column>
+
+            <el-table-column label="落地页url" prop="Landing.url" width="250">
+            </el-table-column>
+
+            <el-table-column prop="cvstype" label="转化类型"> </el-table-column>
+
+            <el-table-column
+              prop="Landing.cvscount"
               label="转化点击量"
-              show-overflow-tooltip
+              width="100"
             >
             </el-table-column>
 
-            <el-table-column
-              prop="visites"
-              label="总访问量"
-              show-overflow-tooltip
-            >
+            <el-table-column prop="Landing.total" label="总访问量">
             </el-table-column>
 
-            <el-table-column prop="" label="转化率" show-overflow-tooltip>
+            <el-table-column label="转化率">
               <template slot-scope="scope">
                 {{ rate(scope.row) }}
               </template>
@@ -187,13 +186,15 @@ export default {
     pickdate(val) {
       this.form.date1 = val[0];
       this.form.date2 = val[1];
+      this.getcvsrate();
     },
 
-    rate(val) {
-      if (val.visites == 0) {
+    rate({ Landing }) {
+      if (Landing.cvscount == 0) {
         return 0 + "%";
       } else {
-        const rate = (val.conversion / val.visites).toFixed(4) * 100 + "%";
+        const rate =
+          ((Landing.cvscount / Landing.total) * 100).toFixed(2) + "%";
         return rate;
       }
     },

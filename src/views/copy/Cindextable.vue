@@ -62,18 +62,6 @@
         </el-table-column>
       </el-table>
     </div>
-    <div class="page">
-      <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage"
-        :page-sizes="[10, 20, 30, 40]"
-        :page-size="10"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="2"
-      >
-      </el-pagination>
-    </div>
   </div>
 </template>
 
@@ -83,18 +71,7 @@ export default {
   created() {},
   data() {
     return {
-      tableData: [
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
-        },
-      ],
+      tableData: [],
       switchflag: false,
       switchflags: false,
       //   分页相关
@@ -111,13 +88,6 @@ export default {
     handleDelete(index, row) {
       console.log(index, row);
     },
-    // 分页功能两个
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
-    },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
-    },
   },
   components: {},
 };
@@ -126,15 +96,13 @@ export default {
 <style lang="scss" scoped>
 #Cindextable {
   background-color: #fafafa;
-  border: 1px solid #eee;
   .button {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding: 10px 15px;
   }
-  /* .group-table {
-    } */
+
   .page {
     display: flex;
     justify-content: flex-start;

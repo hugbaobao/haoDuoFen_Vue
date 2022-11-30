@@ -32,7 +32,7 @@
                     v-for="item in selectlist"
                     :key="item.id"
                     :label="item.group"
-                    :value="item.group"
+                    :value="item.id"
                   ></el-option>
                 </el-select>
               </el-form-item>

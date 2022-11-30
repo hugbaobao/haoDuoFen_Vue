@@ -49,7 +49,7 @@ export const getcvslinkApi = function (pages, limit, filterform) {
   });
 };
 
-// 获取转化率
+// 获取cvs转化率
 export const getcvsrateApi = function (pages, limit, filterform) {
   return request.post("/cvslink/gtr", {
     currentpage: pages,

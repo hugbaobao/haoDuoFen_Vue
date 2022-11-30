@@ -1,6 +1,7 @@
 <template>
   <div id="Copyindex">
     <VchatContainer>
+      <!-- 表单区 -->
       <template>
         <el-form-item label="">
           <el-select
@@ -19,11 +20,12 @@
           ></el-input>
         </el-form-item>
       </template>
+
+      <!-- 表格区 -->
+      <template slot="tables">
+        <Cindextable></Cindextable>
+      </template>
     </VchatContainer>
-    <!-- 表格区 -->
-    <div class="Cindextable">
-      <Cindextable></Cindextable>
-    </div>
   </div>
 </template>
 
@@ -49,12 +51,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.Cindextable {
-  padding: 10px 20px;
-  background-color: #fff;
-}
-</style>
+<style lang="scss" scoped></style>
 <style>
 /* 下拉选择框不遮盖 */
 .el-form-item--mini.el-form-item {

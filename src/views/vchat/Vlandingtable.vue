@@ -1,8 +1,18 @@
 <template>
   <div id="VGrouptable">
     <div class="button">
-      <el-button type="warning" size="small">批量设置</el-button>
-      <el-button type="warning" size="small">批量删除</el-button>
+      <el-button type="warning" size="small" @click="EditMany"
+        >批量设置</el-button
+      >
+      <el-popconfirm title="确定删除吗？" @confirm="DeleteMany">
+        <el-button
+          type="warning"
+          size="small"
+          slot="reference"
+          style="margin-left: 10px"
+          >批量删除</el-button
+        >
+      </el-popconfirm>
     </div>
 
     <div class="group-table">
@@ -22,7 +32,12 @@
         <el-table-column type="selection" width="50" align="center">
         </el-table-column>
 
-        <el-table-column prop="group" fixed label="落地页分组" width="100">
+        <el-table-column
+          prop="wxgroup.name"
+          fixed
+          label="落地页分组"
+          width="100"
+        >
         </el-table-column>
 
         <el-table-column prop="url" label="落地页url" width="250">
@@ -68,7 +83,10 @@
             {{ from(scope.row.from) }}
           </template>
         </el-table-column>
-        <el-table-column prop="show" label="微信号显示" width="100">
+        <el-table-column label="微信号显示" width="100">
+          <template slot-scope="scope">
+            {{ scope.row.show || "未设置" }}
+          </template>
         </el-table-column>
 
         <el-table-column fixed="right" label="操作" width="150">
@@ -105,11 +123,10 @@
 </template>
 
 <script>
-import { UnbindingApi } from "@/api/landing";
+import { UnbindingApi, UnbindingLotApi } from "@/api/landing";
 import MyLandwithgroup from "@/components/unshowbutton/Landwithgroup.vue";
 export default {
   name: "VGrouptable",
-  created() {},
   props: ["tabledata"],
   data() {
     return {
@@ -123,7 +140,9 @@ export default {
     },
 
     handleSelectionChange(val) {
-      this.multipleSelection = val;
+      this.multipleSelection = val.map((item) => {
+        return item.id;
+      });
     },
     // 编辑
     handleEdit(index, row) {
@@ -133,7 +152,29 @@ export default {
     handleDelete(index, row) {
       this.Unbinding(row.id);
     },
+    // 批量删除
+    DeleteMany() {
+      if (this.multipleSelection.length == 0) {
+        this.$message({
+          message: "未选择任何数据",
+          type: "warning",
+        });
+      } else {
+        this.Unbindinglot();
+      }
+    },
 
+    // 批量修改
+    EditMany() {
+      if (this.multipleSelection.length == 0) {
+        this.$message({
+          message: "未选择任何数据",
+          type: "warning",
+        });
+      } else {
+        this.$refs.controldialog.OpenFromEditMany(this.multipleSelection);
+      }
+    },
     // 表格渲染判断
     from(val) {
       let words = "";
@@ -161,6 +202,19 @@ export default {
         });
       } else {
         return this.$message.error("出错了");
+      }
+    },
+    // 批量解绑
+    async Unbindinglot() {
+      const { data: res } = await UnbindingLotApi(this.multipleSelection);
+      if (res.code == 200) {
+        this.$message({
+          message: "修改成功",
+          type: "success",
+        });
+        this.$emit("refresh");
+      } else {
+        return this.$message.error("发生错误！");
       }
     },
   },

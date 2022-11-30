@@ -7,6 +7,13 @@ export const RegisterApi = function (form) {
   });
 };
 
+//改密
+export const ChangePassApi = function (form) {
+  return request.post("/admin/reset", {
+    form,
+  });
+};
+
 // 登录
 export const LoginApi = function (form) {
   return request.post("/admin/login", {

@@ -24,6 +24,7 @@
             ></el-option>
           </el-select>
         </el-form-item>
+
         <!-- 默认时间选择 -->
         <el-form-item>
           <el-col :span="11">
@@ -55,7 +56,7 @@
               v-for="item in selectlist"
               :key="item.id"
               :label="item.group"
-              :value="item.group"
+              :value="item.id"
             ></el-option>
           </el-select>
         </el-form-item>
@@ -63,6 +64,7 @@
         <el-form-item label="">
           <el-select
             clearable
+            disabled
             v-model="form.class"
             placeholder="选择转化类型"
             :popper-append-to-body="false"
@@ -89,6 +91,7 @@
         <el-form-item label="">
           <el-select
             clearable
+            disabled
             v-model="form.order"
             placeholder="排序"
             :popper-append-to-body="false"
@@ -105,6 +108,7 @@
         <el-form-item label="">
           <el-select
             clearable
+            disabled
             v-model="form.source"
             placeholder="选择来源"
             :popper-append-to-body="false"
@@ -128,20 +132,17 @@
             placeholder="数据上报状态"
             :popper-append-to-body="false"
           >
-            <el-option label="等待上传" value="shanghai"></el-option>
-            <el-option label="转化成功" value="shanghai"></el-option>
-            <el-option label="转化失败" value="shanghai"></el-option>
-            <el-option label="条件不足" value="shanghai"></el-option>
-            <el-option label="无效转化" value="shanghai"></el-option>
-            <el-option label="深度转化" value="shanghai"></el-option>
+            <el-option disabled label="等待上传" value="shanghai"></el-option>
+            <el-option label="转化成功" :value="1"></el-option>
+            <el-option disabled label="转化失败" value="shanghai"></el-option>
+            <el-option label="条件不足" :value="0"></el-option>
+            <el-option disabled label="无效转化" value="shanghai"></el-option>
+            <el-option disabled label="深度转化" value="shanghai"></el-option>
           </el-select>
         </el-form-item>
 
         <el-form-item>
-          <el-input
-            v-model="form.words"
-            placeholder="搜索url/关键词/微信号"
-          ></el-input>
+          <el-input v-model="form.words" placeholder="搜索url关键词"></el-input>
         </el-form-item>
       </template>
       <!-- 表格区 -->
@@ -179,7 +180,7 @@
             >
             </el-table-column>
             <el-table-column
-              prop="group"
+              prop="Landing.Group.group"
               label="落地页分组"
               show-overflow-tooltip
               width="100"
@@ -187,7 +188,7 @@
             >
             </el-table-column>
             <el-table-column
-              prop="url"
+              prop="Landing.url"
               label="访问url"
               show-overflow-tooltip
               width="150"
@@ -195,7 +196,7 @@
             >
             </el-table-column>
             <el-table-column
-              prop="address"
+              prop="Landing.remarks"
               label="备注"
               show-overflow-tooltip
               v-if="checkbox.beizhu"
@@ -230,12 +231,10 @@
               v-if="checkbox.paiming"
             >
             </el-table-column>
-            <el-table-column
-              prop="address"
-              label="数据上报"
-              show-overflow-tooltip
-              v-if="checkbox.shangbao"
-            >
+            <el-table-column label="数据上报" v-if="checkbox.shangbao">
+              <template slot-scope="scope">
+                {{ scope.row.report == 0 ? "条件不足" : "上报成功" }}
+              </template>
             </el-table-column>
             <el-table-column
               prop="cvsdate"
@@ -258,6 +257,9 @@
               show-overflow-tooltip
               v-if="checkbox.leixing"
             >
+              <template slot-scope="scope">
+                {{ scope.row.type == 1 ? "点击" : "长按" }}
+              </template>
             </el-table-column>
             <el-table-column
               prop="target"
@@ -440,6 +442,12 @@ export default {
 
     // Api
     async getmonitor() {
+      /* const data = await getmonitorApi(
+        this.currentPage,
+        this.pageSize,
+        this.form
+      );
+      console.log(data); */
       const { data: res } = await getmonitorApi(
         this.currentPage,
         this.pageSize,

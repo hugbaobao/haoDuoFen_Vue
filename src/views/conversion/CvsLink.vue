@@ -16,10 +16,10 @@
             :popper-append-to-body="false"
           >
             <el-option
-              v-for="(item, index) in grouplist"
-              :key="index"
+              v-for="item in grouplist"
+              :key="item.id"
               :label="item.group"
-              :value="item.group"
+              :value="item.id"
             ></el-option>
           </el-select>
         </el-form-item>
@@ -49,10 +49,12 @@
             }"
             empty-text="请添加落地页链接！"
           >
-            <el-table-column fixed label="落地页分组">
-              <template slot-scope="scope">{{
-                scope.row.landing.group
-              }}</template>
+            <el-table-column
+              fixed
+              prop="landing.Group.group"
+              label="落地页分组"
+              width="100"
+            >
             </el-table-column>
             <el-table-column label="落地页url" width="250">
               <template slot-scope="scope">{{
@@ -61,11 +63,12 @@
             </el-table-column>
             <el-table-column prop="type" label="转化类型" show-overflow-tooltip>
             </el-table-column>
-            <el-table-column
-              prop="cvscount"
-              label="计数方式"
-              show-overflow-tooltip
-            >
+            <el-table-column prop="cvscount" label="计数方式" width="120">
+              <template slot-scope="scope">
+                {{
+                  scope.row.cvscount == 0 ? "点击多次计多次" : "点击多次计一次"
+                }}
+              </template>
             </el-table-column>
             <el-table-column
               prop="cvsmode"
@@ -205,7 +208,6 @@ export default {
     },
     // 编辑提交传来
     toeditform(form) {
-      console.log(form);
       this.updatecvslink(form);
     },
 

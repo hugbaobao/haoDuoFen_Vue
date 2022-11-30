@@ -8,8 +8,13 @@
       <template slot="currentForm">
         <div class="half">
           <div class="form_content">
-            <el-form ref="form" :model="form" label-width="100px">
-              <el-form-item label="选择统计链接">
+            <el-form
+              ref="form"
+              :model="form"
+              :rules="rules"
+              label-width="110px"
+            >
+              <el-form-item label="选择统计链接" prop="uid" required>
                 <el-select
                   clearable
                   v-model="form.uid"
@@ -25,30 +30,30 @@
               </el-form-item>
 
               <el-form-item label="转化类型">
-                <el-select clearable v-model="form.type" placeholder="请选择">
-                  <el-option label="点击" value="1"></el-option>
-                  <el-option label="长按识别" value="2"></el-option>
+                <el-select v-model="form.type" placeholder="请选择">
+                  <el-option label="点击" :value="1"></el-option>
+                  <el-option label="长按识别" :value="2"></el-option>
                 </el-select>
               </el-form-item>
 
               <el-form-item label="统计类型">
                 <el-radio-group v-model="form.cvstype">
-                  <el-radio label="1">点击</el-radio>
-                  <el-radio label="2">长按</el-radio>
+                  <el-radio :label="1">点击</el-radio>
+                  <el-radio :label="2">长按</el-radio>
                 </el-radio-group>
               </el-form-item>
 
               <el-form-item label="计数方式">
                 <el-radio-group v-model="form.cvscount">
-                  <el-radio label="1">多次触发计一次</el-radio>
-                  <el-radio label="0">多次触发计多次</el-radio>
+                  <el-radio :label="1">多次触发计一次</el-radio>
+                  <el-radio :label="0">多次触发计多次</el-radio>
                 </el-radio-group>
               </el-form-item>
 
               <el-form-item label="统计方式">
                 <el-radio-group v-model="form.cvsmode">
-                  <el-radio label="1">精确匹配</el-radio>
-                  <el-radio label="0">模糊匹配</el-radio>
+                  <el-radio :label="1">精确匹配</el-radio>
+                  <el-radio :label="0">模糊匹配</el-radio>
                 </el-radio-group>
               </el-form-item>
 
@@ -58,7 +63,9 @@
 
               <el-form-item>
                 <el-button type="primary" @click="closedialog">取 消</el-button>
-                <el-button type="primary" @click="onSubmit">提 交</el-button>
+                <el-button type="primary" @click="onSubmit('form')"
+                  >提 交</el-button
+                >
               </el-form-item>
             </el-form>
           </div>
@@ -92,11 +99,14 @@ export default {
     return {
       form: {
         uid: "",
-        type: "",
-        cvstype: "",
-        cvscount: "",
-        cvsmode: "",
+        type: 1,
+        cvstype: 1,
+        cvscount: 1,
+        cvsmode: 1,
         code: "",
+      },
+      rules: {
+        uid: { required: true, message: "请选择统计链接", trigger: "blur" },
       },
       selectlist: [],
     };
@@ -105,9 +115,15 @@ export default {
     Dialog,
   },
   methods: {
-    onSubmit() {
-      this.$emit("onsubmit", this.form);
-      Bus.$emit("closedialog");
+    onSubmit(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.$emit("onsubmit", this.form);
+          Bus.$emit("closedialog");
+        } else {
+          return false;
+        }
+      });
     },
     // 取消按钮
     closedialog() {
@@ -115,8 +131,11 @@ export default {
     },
   },
   watch: {
-    "form.type"(val) {
-      this.form.code = `type_index="${val}"`;
+    "form.type": {
+      handler(val) {
+        this.form.code = `type_index="${val}"`;
+      },
+      immediate: true,
     },
   },
 };

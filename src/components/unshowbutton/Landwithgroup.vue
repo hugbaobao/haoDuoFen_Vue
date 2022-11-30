@@ -145,7 +145,7 @@
 <script>
 import Bus from "@/utils/event";
 import store from "@/store/index";
-import { changeweixinApi } from "@/api/landing";
+import { changelotApi } from "@/api/landing";
 export default {
   name: "Landwithgroup",
   props: ["dialogtitle"],
@@ -172,6 +172,7 @@ export default {
         pstyle: 1,
         font: 1, */
       },
+      arrs: [],
       selectlist: [],
       // 分组或自定义微信
       flag: true,
@@ -179,7 +180,8 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.ChangeWeixin();
+      // this.ChangeWeixin();
+      this.changelot();
     },
     // 取消按钮
     closedialog() {
@@ -188,6 +190,7 @@ export default {
 
     // 打开dialog
     opendialog(forms) {
+      this.arrs = [forms.id];
       this.form.id = forms.id;
       this.form.from = forms.from;
       this.form.group = forms.gid;
@@ -204,9 +207,29 @@ export default {
       this.$refs.showdialog.click();
     },
 
+    // 批量设置的打开按钮
+    OpenFromEditMany(val) {
+      this.$refs.showdialog.click();
+      this.arrs = val;
+    },
+
     // Api
-    async ChangeWeixin() {
+    /*   async ChangeWeixin() {
       const { data: res } = await changeweixinApi(this.form);
+      if (res.code == 200) {
+        this.$message({
+          message: "修改成功！",
+          type: "success",
+        });
+        Bus.$emit("closedialog");
+        this.$emit("refresh");
+      } else {
+        return this.$message.error("出错了");
+      }
+    }, */
+
+    async changelot() {
+      const { data: res } = await changelotApi(this.arrs, this.form);
       if (res.code == 200) {
         this.$message({
           message: "修改成功！",

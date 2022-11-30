@@ -16,29 +16,29 @@
 
               <el-form-item label="转化类型">
                 <el-select clearable v-model="form.type" placeholder="请选择">
-                  <el-option label="点击" value="1"></el-option>
-                  <el-option label="长按识别" value="2"></el-option>
+                  <el-option label="点击" :value="1"></el-option>
+                  <el-option label="长按识别" :value="2"></el-option>
                 </el-select>
               </el-form-item>
 
               <el-form-item label="统计类型">
                 <el-radio-group v-model="form.cvstype">
-                  <el-radio label="1">点击</el-radio>
-                  <el-radio label="2">长按</el-radio>
+                  <el-radio :label="1">点击</el-radio>
+                  <el-radio :label="2">长按</el-radio>
                 </el-radio-group>
               </el-form-item>
 
               <el-form-item label="计数方式">
                 <el-radio-group v-model="form.cvscount">
-                  <el-radio label="1">多次触发计一次</el-radio>
-                  <el-radio label="0">多次触发计多次</el-radio>
+                  <el-radio :label="1">多次触发计一次</el-radio>
+                  <el-radio :label="0">多次触发计多次</el-radio>
                 </el-radio-group>
               </el-form-item>
 
               <el-form-item label="统计方式">
                 <el-radio-group v-model="form.cvsmode">
-                  <el-radio label="1">精确匹配</el-radio>
-                  <el-radio label="0">模糊匹配</el-radio>
+                  <el-radio :label="1">精确匹配</el-radio>
+                  <el-radio :label="0">模糊匹配</el-radio>
                 </el-radio-group>
               </el-form-item>
 
@@ -84,10 +84,10 @@ export default {
       form: {
         id: "",
         landingurl: "",
-        type: "",
-        cvstype: "",
-        cvscount: "",
-        cvsmode: "",
+        type: 1,
+        cvstype: 1,
+        cvscount: 0,
+        cvsmode: 0,
         code: "",
       },
       selectlist: [],

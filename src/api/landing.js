@@ -16,6 +16,7 @@ export const delsingleApi = function (val) {
   });
 };
 
+// 批量删
 export const dellotApi = function (val) {
   return request.get("/landing/dellot", {
     params: {
@@ -38,6 +39,14 @@ export const changeweixinApi = function (form) {
   });
 };
 
+//批量改微信绑定信息
+export const changelotApi = function (arrs, forms) {
+  return request.post("/landing/cgl", {
+    arr: arrs,
+    form: forms,
+  });
+};
+
 // get落地页
 export const getLandingApi = function (pages, limit, filterform) {
   return request.post("/landing/gtlanding", {
@@ -47,6 +56,25 @@ export const getLandingApi = function (pages, limit, filterform) {
   });
 };
 
+// get落地页排行页数据
+export const LandingRankApi = function (pages, limit, filterform) {
+  return request.post("/landing/lar", {
+    currentpage: pages,
+    singlepage: limit,
+    condition: filterform,
+  });
+};
+
+// 获取cvs转化率
+export const getcvsrateApi = function (pages, limit, filterform) {
+  return request.post("/landing/gtr", {
+    currentpage: pages,
+    singlepage: limit,
+    condition: filterform,
+  });
+};
+
+// 单独url列表用于渲染菜单
 export const landingallApi = function () {
   return request.post("/landing/gtl");
 };
@@ -73,6 +101,15 @@ export const UnbindingApi = function (ids) {
   return request.get("/landing/ubd", {
     params: {
       id: ids,
+    },
+  });
+};
+
+//批量解绑
+export const UnbindingLotApi = function (ids) {
+  return request.get("/landing/ubl", {
+    params: {
+      arr: ids,
     },
   });
 };
