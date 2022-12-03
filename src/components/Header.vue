@@ -83,12 +83,14 @@
         </div>
 
         <div class="right_tab">
-          <el-avatar
-            shape="square"
-            size="medium"
-            :src="userinfo.header"
-            style="vertical-align: middle"
-          ></el-avatar>
+          <router-link to="/inside/personal/personal">
+            <el-avatar
+              shape="square"
+              size="medium"
+              :src="userinfo.header"
+              style="vertical-align: middle"
+            ></el-avatar>
+          </router-link>
         </div>
       </div>
     </div>

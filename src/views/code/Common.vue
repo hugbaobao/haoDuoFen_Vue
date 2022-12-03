@@ -39,7 +39,7 @@
 
         <div class="code">
           <pre>
-            &lt;span targetelement="顶部点击按钮"&gt;默认微信号&lt;/span&gt;
+            &lt;span target_element="顶部点击按钮"&gt;默认微信号&lt;/span&gt;
           </pre>
         </div>
         <h6>添加方法：添加targetelement属性</h6>

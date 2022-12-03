@@ -4,8 +4,6 @@
       <el-menu
         :default-active="activeIndex"
         class="el-menu-vertical-demo"
-        @open="handleOpen"
-        @close="handleClose"
         :collapse="isCollapse"
         background-color="#28333e"
         text-color="#fff"
@@ -219,12 +217,12 @@ export default {
   components: {},
   methods: {
     // 不需要
-    handleOpen(key, keyPath) {
+    /* handleOpen(key, keyPath) {
       console.log(key, keyPath);
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
-    },
+    }, */
   },
 };
 </script>

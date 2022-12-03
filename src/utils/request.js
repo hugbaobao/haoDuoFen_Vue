@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const request = axios.create({
-  baseURL: "http://127.0.0.1:8000",
+  baseURL: "http://api.antairui.net",
+  // baseURL: "http://127.0.0.1:8000",
 });
 
 // 添加请求拦截器

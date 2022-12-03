@@ -49,26 +49,29 @@
     </div>
 
     <!-- 嵌套的表单 -->
-    <el-dialog
-      title="修改分组信息"
-      :visible.sync="dialogFormVisible"
-      append-to-body
-      width="30%"
-      style="margin-top: 15vh"
-    >
-      <el-form :model="form" label-position="left" label-width="80px">
-        <el-form-item label="分组名称">
-          <el-input v-model="form.group" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="备注">
-          <el-input v-model="form.remarks" autocomplete="off"></el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="changesub">提 交</el-button>
+    <div class="innercontainer" v-if="inners">
+      <div class="innert">修改分组</div>
+      <div class="innerform">
+        <el-form
+          :model="form"
+          size="small"
+          :rules="rules"
+          ref="form"
+          label-position="top"
+        >
+          <el-form-item label="分组名称:" prop="group">
+            <el-input v-model="form.group"></el-input>
+          </el-form-item>
+          <el-form-item label="备注:">
+            <el-input v-model="form.remarks"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="inners = false">取消</el-button>
+            <el-button type="primary" @click="onSubmit('form')">提交</el-button>
+          </el-form-item>
+        </el-form>
       </div>
-    </el-dialog>
+    </div>
   </div>
 </template>
 
@@ -85,7 +88,6 @@ export default {
   created() {
     this.getgroup();
     Bus.$on("refreshgroup", () => {
-      this.totalcount++;
       this.getgroup();
     });
     Bus.$on("getsearch", (val) => {
@@ -107,7 +109,18 @@ export default {
         group: "",
         remarks: "",
       },
+      rules: {
+        group: [
+          {
+            required: true,
+            message: "分组名称必填",
+            trigger: "blur",
+          },
+        ],
+      },
       dialogFormVisible: false,
+      // 编辑按钮触发的表单
+      inners: false,
     };
   },
   methods: {
@@ -115,20 +128,22 @@ export default {
       this.form.id = row.id;
       this.form.group = row.group;
       this.form.remarks = row.remarks;
-      this.dialogFormVisible = true;
+      this.inners = true;
     },
     // 单删
     handleDelete(index, row) {
       this.delgroup(row.id);
-      this.totalcount--;
-      this.getgroup();
     },
 
     // 更新分组
-    changesub() {
-      this.updategroup(this.form);
-      this.dialogFormVisible = false;
-      this.getgroup();
+    onSubmit(formname) {
+      this.$refs[formname].validate((valid) => {
+        if (valid) {
+          this.updategroup(this.form);
+        } else {
+          return false;
+        }
+      });
     },
 
     // 分页功能两个
@@ -156,6 +171,7 @@ export default {
           title: "确认",
           message: "已删除分组",
         });
+        this.getgroup();
       }
     },
     async updategroup(msg) {
@@ -166,6 +182,8 @@ export default {
           message: "分组信息已修改",
           type: "success",
         });
+        this.inners = false;
+        this.getgroup();
       }
     },
     async getsearch(msg) {
@@ -185,6 +203,27 @@ export default {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+  }
+
+  .innercontainer {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 250px);
+    width: 500px;
+    z-index: 999;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22), 0 0 6px rgba(0, 0, 0, 0.14);
+
+    .innert {
+      border-bottom: 1px solid #dcdfe6;
+      font-size: 18px;
+      padding: 10px;
+      text-align: center;
+    }
+    .innerform {
+      padding: 20px 40px;
+    }
   }
 }
 </style>

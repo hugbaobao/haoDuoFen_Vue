@@ -107,7 +107,7 @@ export default {
   data() {
     return {
       userinfo: null,
-      activeName: "first",
+      activeName: "second",
       labelPosition: "top",
       ruleForm: {
         id: 0,

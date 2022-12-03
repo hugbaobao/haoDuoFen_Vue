@@ -27,7 +27,7 @@
       >
         <el-table-column type="selection" width="55" align="center">
         </el-table-column>
-        <el-table-column fixed prop="Wxgroup.name" label="所属分组" width="120">
+        <el-table-column fixed prop="Group.group" label="所属分组" width="120">
         </el-table-column>
         <el-table-column prop="url" label="落地页url" width="250">
         </el-table-column>
@@ -254,7 +254,6 @@ export default {
     this.selectlist = store.state.grouplist;
     // 刷新表格
     Bus.$on("refreshtable", () => {
-      this.totalcount++;
       this.getlanding();
     });
     // 获取筛选条件
@@ -310,13 +309,6 @@ export default {
     },
     handleDelete(index, row) {
       this.deletesingle(row.id);
-      this.totalcount--;
-      const flag = this.totalcount % this.singlepage;
-      const check = this.totalcount / this.singlepage;
-      if (flag == 0 && this.currentPage > check) {
-        this.currentPage--;
-      }
-      this.getlanding();
     },
     DeleteMany() {
       if (this.multipleSelection.length == 0) {
@@ -326,10 +318,6 @@ export default {
         });
       } else {
         this.deletelot(this.multipleSelection);
-        this.totalcount = this.totalcount - this.multipleSelection.length;
-        const pagecount = parseInt(this.totalcount / this.singlepage);
-        this.currentPage =
-          this.currentPage > pagecount ? pagecount : this.currentPage;
       }
     },
     // 分页功能两个
@@ -358,15 +346,17 @@ export default {
           title: "确认",
           message: "已删除本条落地页",
         });
+        this.getlanding();
       }
     },
     async deletelot(val) {
-      const { data } = await dellotApi(val);
-      if (data) {
+      const { data: res } = await dellotApi(val);
+      if (res.code == 200) {
         this.$notify.info({
           title: "确认",
           message: "已删除落地页",
         });
+        this.getlanding();
       }
     },
     async updatelanding() {
