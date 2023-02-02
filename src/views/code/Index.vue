@@ -33,7 +33,7 @@
 
         <div class="code">
           <pre>
-            微信号代码： &lt;span id="inner_text"&gt;默认微信号&lt;/span&gt;
+            微信号代码： &lt;span class="inner_text"&gt;默认微信号&lt;/span&gt;
           </pre>
         </div>
         <h6>
@@ -50,7 +50,7 @@
 
         <div class="code">
           <pre>
-            微信号名称代码： &lt;span id="inner_name"&gt;默认微信号&lt;/span&gt;
+            微信号名称代码： &lt;span class="inner_name"&gt;默认微信号&lt;/span&gt;
           </pre>
         </div>
         <h6>
@@ -67,7 +67,7 @@
 
         <div class="code">
           <pre>
-            二维码标签： &lt; img id="atr_img" src="默认二维码地址"/&gt;
+            二维码标签： &lt; img class="atr_img" src="默认二维码地址"/&gt;
           </pre>
         </div>
         <h6>添加方法：替换页面上显示二维码的img标签即可</h6>

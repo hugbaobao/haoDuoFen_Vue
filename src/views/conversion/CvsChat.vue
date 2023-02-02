@@ -114,18 +114,14 @@ export default {
         date2: "",
         words: "",
       },
-      // 表格数据
       tableData: [],
       totalcount: 0,
-      // 分组
       landinglist: [],
-      // 关于分页
       currentPage: 1,
       pageSize: 10,
     };
   },
   methods: {
-    // 子组件传来的分页数据
     changeSize(val) {
       this.pageSize = val;
       this.getWx();
@@ -140,7 +136,6 @@ export default {
       this.getWx();
     },
 
-    // 快捷修改日期
     pickdate(val) {
       this.form.date1 = val[0];
       this.form.date2 = val[1];

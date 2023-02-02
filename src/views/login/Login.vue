@@ -44,7 +44,6 @@
 <script>
 import store from "@/store/index";
 import MyLogincontainer from "@/views/login/LoginContainer.vue";
-// 验证规则
 import { validateUsername, validatePassword } from "@/utils/validate";
 import { LoginApi } from "@/api/admin";
 export default {

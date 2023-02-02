@@ -257,9 +257,9 @@
               show-overflow-tooltip
               v-if="checkbox.leixing"
             >
-              <template slot-scope="scope">
+              <!--  <template slot-scope="scope">
                 {{ scope.row.type == 1 ? "点击" : "长按" }}
-              </template>
+              </template> -->
             </el-table-column>
             <el-table-column
               prop="target"
@@ -381,7 +381,6 @@ export default {
       // 关于分页
       currentPage: 1,
       pageSize: 10,
-      // 控制表格元素是否显示
       checkbox: {
         zhanghao: false,
         luodiye: true,
@@ -424,12 +423,10 @@ export default {
       this.getmonitor();
     },
 
-    // 改变表格项目
     changebox(val) {
       this.checkbox = val;
     },
 
-    // 筛选搜索按钮
     filtersearch() {
       this.getmonitor();
     },

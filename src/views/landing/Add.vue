@@ -85,7 +85,6 @@ export default {
       currentPage: 1,
       tableData: [],
       inners: false,
-      // 内层表单
       form: {
         group: "",
         remark: "",

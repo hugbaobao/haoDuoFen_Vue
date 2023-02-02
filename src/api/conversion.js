@@ -57,3 +57,33 @@ export const getcvsrateApi = function (pages, limit, filterform) {
     condition: filterform,
   });
 };
+
+export const getcvstypeApi = function () {
+  return request.get("/cvstype/gtl");
+};
+export const cvstypelistApi = function () {
+  return request.get("/cvstype/tpl");
+};
+
+export const changetypenameApi = function (id, typename) {
+  return request.get("/cvstype/upn", {
+    params: {
+      id,
+      typename,
+    },
+  });
+};
+
+export const deletetypeApi = function (id) {
+  return request.get("/cvstype/del", {
+    params: {
+      id,
+    },
+  });
+};
+
+export const appendcvstypeApi = function (form) {
+  return request.post("/cvstype/append", {
+    data: form,
+  });
+};

@@ -57,7 +57,6 @@ import Bus from "@/utils/event";
 import store from "@/store/index";
 export default {
   name: "LandingSearch",
-  // 用于搜索下拉菜单渲染
   created() {
     this.selectlist = store.state.grouplist;
   },

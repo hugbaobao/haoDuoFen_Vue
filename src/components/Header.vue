@@ -65,7 +65,7 @@
         <div class="right_tab" style="padding: 0">
           <!-- 下拉菜单 -->
           <el-dropdown>
-            <span class="el-dropdown-link">
+            <span class="el-dropdown-link" v-if="userinfo.username">
               {{ userinfo.username
               }}<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
@@ -87,6 +87,7 @@
             <el-avatar
               shape="square"
               size="medium"
+              v-if="userinfo.header"
               :src="userinfo.header"
               style="vertical-align: middle"
             ></el-avatar>

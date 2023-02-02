@@ -13,7 +13,7 @@
 
         <div class="code">
           <pre>
-            1.点击按钮 id="clicktrigger" 2.长按按钮 id="touchtrigger"
+            1.点击按钮 class="clicktrigger" 2.长按按钮 class="touchtrigger"
           </pre>
         </div>
         <h6>添加方法：请将此代码标签内部！</h6>

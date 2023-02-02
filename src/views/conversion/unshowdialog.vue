@@ -16,8 +16,12 @@
 
               <el-form-item label="转化类型">
                 <el-select clearable v-model="form.type" placeholder="请选择">
-                  <el-option label="点击" :value="1"></el-option>
-                  <el-option label="长按识别" :value="2"></el-option>
+                  <el-option
+                    v-for="item in cvstypelist"
+                    :label="item.typename"
+                    :value="item.typeint"
+                    :key="item.typeint"
+                  ></el-option>
                 </el-select>
               </el-form-item>
 
@@ -77,7 +81,7 @@ export default {
   created() {
     this.selectlist = store.state.landinglist;
   },
-  props: ["isopenin", "formfather"],
+  props: ["isopenin", "formfather", "cvstypelist"],
   data() {
     return {
       isopen: false,
@@ -122,6 +126,12 @@ export default {
       /* this.form.cvstype = newval.cvstype;
       this.form.cvscount = newval.cvscount;
       this.form.cvsmode = newval.cvsmode; */
+    },
+    "form.type": {
+      handler(val) {
+        this.form.code = `type_index="${val}"`;
+      },
+      immediate: true,
     },
   },
 };

@@ -5,7 +5,6 @@ import ElementUI from "element-ui";
 
 Vue.use(Router, ElementUI);
 
-// 避免相同地址互相跳转时报错
 const originalPush = Router.prototype.push;
 const originalReplace = Router.prototype.replace;
 //push
@@ -21,7 +20,6 @@ Router.prototype.replace = function push(location, onResolve, onReject) {
   return originalReplace.call(this, location).catch((err) => err);
 };
 
-// tips:设定了不进入面包屑队列的路由给meta属性内增加breadcrumb：false
 const routes = [
   {
     path: "/",
@@ -195,6 +193,12 @@ const routes = [
             name: "CvsLink",
             component: () => import("@/views/conversion/CvsLink.vue"),
             meta: { title: "统计链接管理", icon: "CvsLink", noCache: true },
+          },
+          {
+            path: "type",
+            name: "CvsType",
+            component: () => import("@/views/conversion/CvsType.vue"),
+            meta: { title: "转化类型管理", icon: "CvsType", noCache: true },
           },
           {
             path: "rate",
@@ -419,7 +423,9 @@ const router = new Router({
 // 当token失效再点击路由跳转至login时会报一个错（Redirected when going from "xxx" to "xxx" via a navigation guard）但是不影响运行;
 router.beforeEach((to, from, next) => {
   const token = sessionStorage.getItem("Token");
-  if (to.path !== "/login") {
+  if (to.path == "/login" || to.path == "/register") {
+    next();
+  } else {
     if (token) {
       next();
     } else {
@@ -429,8 +435,6 @@ router.beforeEach((to, from, next) => {
       });
       next("/login");
     }
-  } else {
-    next();
   }
 });
 

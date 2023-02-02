@@ -185,14 +185,12 @@ export default {
       this.LandingRank();
     },
 
-    // 快捷修改日期
     pickdate(val) {
       this.form.date1 = val[0];
       this.form.date2 = val[1];
       this.LandingRank();
     },
 
-    // 几率计算
     copyrate(val) {
       if (val.total == 0) {
         return "0.00 %";
@@ -219,7 +217,6 @@ export default {
       this.totalcount = res.count;
     },
 
-    // 合计
     totalOutPrice(param) {
       const { columns, data } = param;
       const sums = [];

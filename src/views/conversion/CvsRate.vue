@@ -155,7 +155,6 @@ export default {
         cvstype: "",
         words: "",
       },
-      // 搜索下拉
       landinglist: [],
       grouplist: [],
       // 表格数据
@@ -182,7 +181,6 @@ export default {
       this.getcvsrate();
     },
 
-    // 快捷修改日期
     pickdate(val) {
       this.form.date1 = val[0];
       this.form.date2 = val[1];

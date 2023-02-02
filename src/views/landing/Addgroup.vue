@@ -103,7 +103,6 @@ export default {
       currentPage: 1,
       singlepage: 10,
       totalcount: 0,
-      // 修改的表单
       form: {
         id: 1,
         group: "",
@@ -146,7 +145,6 @@ export default {
       });
     },
 
-    // 分页功能两个
     handleSizeChange(val) {
       this.singlepage = val;
       this.getgroup();

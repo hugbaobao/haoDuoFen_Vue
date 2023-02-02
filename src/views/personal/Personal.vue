@@ -139,7 +139,6 @@ export default {
       });
     },
     // 头像
-    // 文件格式转换
     getFile(file2) {
       this.getBase64(file2).then((res) => {
         this.ruleForm.imageUrl = res;

@@ -252,11 +252,9 @@ export default {
   created() {
     this.getlanding();
     this.selectlist = store.state.grouplist;
-    // 刷新表格
     Bus.$on("refreshtable", () => {
       this.getlanding();
     });
-    // 获取筛选条件
     Bus.$on("landingfilter", (searchform) => {
       this.filterform = searchform;
       this.getlanding();
@@ -279,7 +277,6 @@ export default {
           { validator: validateUrl, trigger: "blur" },
         ],
       },
-      // 筛选条件
       filterform: {
         group: "",
         enable: "",
@@ -320,7 +317,6 @@ export default {
         this.deletelot(this.multipleSelection);
       }
     },
-    // 分页功能两个
     handleSizeChange(val) {
       this.singlepage = val;
       this.getlanding();

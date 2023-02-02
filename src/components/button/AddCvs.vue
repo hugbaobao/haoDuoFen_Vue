@@ -31,8 +31,12 @@
 
               <el-form-item label="转化类型">
                 <el-select v-model="form.type" placeholder="请选择">
-                  <el-option label="点击" :value="1"></el-option>
-                  <el-option label="长按识别" :value="2"></el-option>
+                  <el-option
+                    v-for="item in cvstypelist"
+                    :label="item.typename"
+                    :value="item.typeint"
+                    :key="item.typeint"
+                  ></el-option>
                 </el-select>
               </el-form-item>
 
@@ -91,7 +95,7 @@ import Bus from "@/utils/event";
 import store from "@/store/index";
 export default {
   name: "AddCvs",
-  props: ["dialogtitle"],
+  props: ["dialogtitle", "cvstypelist"],
   created() {
     this.selectlist = store.state.landinglist;
   },

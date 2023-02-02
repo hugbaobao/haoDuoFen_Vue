@@ -31,7 +31,11 @@
 
       <!-- 按钮区 -->
       <template slot="vdialog">
-        <AddCvs dialogtitle="添加统计转化类型" @onsubmit="submitform"></AddCvs>
+        <AddCvs
+          dialogtitle="添加统计转化类型"
+          :cvstypelist="cvstypelist"
+          @onsubmit="submitform"
+        ></AddCvs>
       </template>
 
       <!-- 表格区 -->
@@ -61,7 +65,10 @@
                 scope.row.landing.url
               }}</template>
             </el-table-column>
-            <el-table-column prop="type" label="转化类型" show-overflow-tooltip>
+            <el-table-column label="转化类型" show-overflow-tooltip>
+              <template slot-scope="scope">
+                {{ whichtype(scope.row.type) }}
+              </template>
             </el-table-column>
             <el-table-column prop="cvscount" label="计数方式" width="120">
               <template slot-scope="scope">
@@ -82,7 +89,12 @@
               show-overflow-tooltip
             >
             </el-table-column>
-            <el-table-column prop="code" label="埋点代码" show-overflow-tooltip>
+            <el-table-column
+              prop="code"
+              label="埋点代码"
+              show-overflow-tooltip
+              width="130"
+            >
             </el-table-column>
             <el-table-column
               prop="message"
@@ -127,6 +139,7 @@
       <unshowdialog
         :isopenin="isopened"
         :formfather="fatherform"
+        :cvstypelist="cvstypelist"
         @closer="isopened = false"
         @editedform="toeditform"
       ></unshowdialog>
@@ -147,12 +160,14 @@ import {
   deletecvslinkApi,
   updatecvslinkApi,
   getcvslinkApi,
+  cvstypelistApi,
 } from "@/api/conversion";
 export default {
   name: "CvsLink",
   created() {
     this.grouplist = store.state.grouplist;
     this.getcvslink();
+    this.typelist();
   },
   data() {
     return {
@@ -168,8 +183,6 @@ export default {
       // 关于分页
       currentPage: 1,
       pageSize: 10,
-
-      // 隐藏的dialog
       isopened: false,
       // 准备传给子组件的数据
       fatherform: [],
@@ -178,10 +191,10 @@ export default {
         landings: "",
         second: 0,
       },
+      cvstypelist: [],
     };
   },
   methods: {
-    // 子组件传来的分页数据
     changeSize(val) {
       this.pageSize = val;
       this.getcvslink();
@@ -196,12 +209,10 @@ export default {
       this.getcvslink();
     },
 
-    // 添加按钮
     submitform(val) {
       this.addcsslink(val);
     },
 
-    // 编辑按钮
     handleEdit(index, row) {
       this.fatherform = row;
       this.isopened = true;
@@ -274,6 +285,72 @@ export default {
         return this.$message.error("修改失败！");
       }
     },
+
+    async typelist() {
+      const { data: res } = await cvstypelistApi();
+      this.cvstypelist = res.data;
+    },
+
+    whichtype(val) {
+      let result = "";
+      switch (val) {
+        case 1:
+          result = "点击";
+          break;
+        case 2:
+          result = "长按识别";
+          break;
+        case 3:
+          result = "微信复制按钮点击";
+          break;
+        case 4:
+          result = "微信打开按钮点击";
+          break;
+        case 5:
+          result = "咨询按钮点击";
+          break;
+        case 6:
+          result = "下载按钮点击";
+          break;
+        case 7:
+          result = "购买按钮点击";
+          break;
+        case 8:
+          result = "注册按钮点击";
+          break;
+        case 9:
+          result = "登录按钮点击";
+          break;
+        case 10:
+          result = "拨打电话按钮点击";
+          break;
+        case 11:
+          result = "短信按钮点击";
+          break;
+        case 12:
+          result = "加入购物车按钮点击";
+          break;
+        case 13:
+          result = "地图按钮点击";
+          break;
+        case 14:
+          result = "QQ咨询按钮点击";
+          break;
+        case 15:
+          result = "抽奖按钮点击";
+          break;
+        case 16:
+          result = "投票按钮点击";
+          break;
+        case 17:
+          result = "表单确认提交按钮点击";
+          break;
+        default:
+          result = "";
+          break;
+      }
+      return result;
+    },
   },
   components: {
     VchatContainer,
@@ -289,7 +366,6 @@ export default {
   background-color: #fff;
   padding-bottom: 20px;
 
-  // 隐藏的dialog的父盒子
   .editform {
     display: inline-block;
     position: absolute;

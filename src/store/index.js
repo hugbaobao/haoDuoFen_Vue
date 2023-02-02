@@ -3,10 +3,8 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-// 创建一个新的 store 实例
 const store = new Vuex.Store({
   state: {
-    // 面包屑
     /* tagList: JSON.parse(sessionStorage.getItem("paths")) || [
       { path: "/inside/home", meta: { title: "我的桌面" } },
     ], */
@@ -33,7 +31,7 @@ const store = new Vuex.Store({
         /*  sessionStorage.setItem("paths", JSON.stringify(state.tagList)); */
       }
     },
-    // 移除路由信息
+
     REMOVE_TAG(state, paths) {
       for (var i = 0; i < state.tagList.length; i++) {
         if (state.tagList[i].path == paths.path) {

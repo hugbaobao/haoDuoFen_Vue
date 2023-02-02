@@ -80,6 +80,9 @@
           <el-menu-item index="/inside/conversion/link"
             >统计链接管理</el-menu-item
           >
+          <el-menu-item index="/inside/conversion/type"
+            >转化类型管理</el-menu-item
+          >
           <el-menu-item index="/inside/conversion/rate"
             >转化率统计</el-menu-item
           >

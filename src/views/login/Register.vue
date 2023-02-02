@@ -47,6 +47,9 @@
             >
           </el-form-item>
         </el-form>
+        <div class="tologin">
+          <router-link to="/login">去登陆</router-link>
+        </div>
       </template>
     </my-logincontainer>
   </div>
@@ -54,7 +57,6 @@
 
 <script>
 import MyLogincontainer from "@/views/login/LoginContainer.vue";
-// 验证规则
 import { validateUsername, validatePassword } from "@/utils/validate";
 import { RegisterApi } from "@/api/admin";
 export default {
@@ -90,7 +92,6 @@ export default {
       });
     },
     // 头像
-    // 文件格式转换
     getFile(file2) {
       this.getBase64(file2).then((res) => {
         this.ruleForm.imageUrl = res;
@@ -185,6 +186,15 @@ export default {
     width: 78px;
     height: 78px;
     display: block;
+  }
+}
+
+.tologin {
+  padding-right: 50px;
+  a {
+    color: #76b9f7;
+    font-size: 14px;
+    float: right;
   }
 }
 </style>
